@@ -1,0 +1,94 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/charger.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Charger.gd" type="Script" id=2]
+[ext_resource path="res://Assets/crossYellow.png" type="Texture" id=3]
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 24.0
+height = 16.0
+
+[sub_resource type="Animation" id=4]
+resource_name = "charging"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -0.1, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 4, 6 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "endCharging"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -0.1, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 6, 10 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "startCharging"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -0.2, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 3 ]
+}
+
+[node name="Charger" type="Node2D"]
+scale = Vector2( 2, 2 )
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+hframes = 11
+frame = 10
+
+[node name="BatteryPosition" type="Position2D" parent="."]
+position = Vector2( -13.8954, 18.1046 )
+
+[node name="BatteryRadius" type="Area2D" parent="."]
+collision_layer = 524288
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BatteryRadius"]
+visible = false
+position = Vector2( -16, 8 )
+shape = SubResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/charging = SubResource( 4 )
+anims/endCharging = SubResource( 5 )
+anims/startCharging = SubResource( 6 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 10
+texture = ExtResource( 3 )
+emission_shape = 2
+emission_rect_extents = Vector2( 5, 15 )
+gravity = Vector2( 0, 0 )
+initial_velocity = 10.0
+initial_velocity_random = 1.0
+radial_accel = 12.0
+scale_amount = 0.3
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

@@ -1,0 +1,350 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://Assets/tutorial.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Castle.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/LevelBorder.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/UpgradeStation.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Battery.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Turret.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Charger.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/UpgradePanel.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Assets/BULKYPIX.TTF" type="DynamicFontData" id=13]
+[ext_resource path="res://Scripts/Tutorial.gd" type="Script" id=14]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 816, 336, -64, 336, -64, 264, 888, 264, 888, 600, 816, 600 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 0, 3, 4, 5 ) ]
+outlines = [ PoolVector2Array( 816, 336, -64, 336, -64, 264, 888, 264, 888, 600, 816, 600 ) ]
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Node2D
+
+
+
+func _on_Area2D_area_entered(area):
+	if (area.is_in_group(\"Bullet\")):
+		area.get_parent().queue_free()
+	pass # Replace with function body.
+"
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends Node2D
+
+onready var upgradePanel = get_parent().get_node(\"UpgradePanel\")
+var haveBattery = false
+
+func _process(delta):
+	getCollision()
+	if (haveBattery):
+		$Sprite.frame = 1
+	else:
+		$Sprite.frame = 0
+	
+func getCollision():
+	haveBattery = false
+	var allAreas = $BatteryRadius.get_overlapping_areas()
+	for area in allAreas:
+		if (area.is_in_group(\"BatteryRadiusToPut\")):
+			if(!area.get_parent().isPicked):
+				area.get_parent().position = $BatteryPosition.global_position
+				if area.get_parent().havePower(): 
+					haveBattery = true
+					area.get_parent().isConnected = true
+					
+func openPanel():
+	upgradePanel.visible = true
+	upgradePanel.startTimer()
+	get_tree().paused = true
+"
+
+[sub_resource type="GDScript" id=4]
+script/source = "extends Node2D
+
+var haveBattery = false
+
+func _ready():
+	$CPUParticles2D.emitting = false
+	pass
+
+func _process(delta):
+	getCollision()
+	
+func getCollision():
+	haveBattery = false
+	var allAreas = $BatteryRadius.get_overlapping_areas()
+	for area in allAreas:
+		if (area.is_in_group(\"BatteryRadiusToPut\")):
+			if(!area.get_parent().isPicked):
+				area.get_parent().position = $BatteryPosition.global_position
+				haveBattery = true
+				area.get_parent().isCharging = true
+				if (!$AnimationPlayer.is_playing()):
+					$AnimationPlayer.play(\"startCharging\")
+	if (!haveBattery and $AnimationPlayer.current_animation == \"charging\"):
+		$AnimationPlayer.play(\"endCharging\")
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if (anim_name == \"startCharging\"):
+		$AnimationPlayer.play(\"charging\")
+		$CPUParticles2D.emitting = true
+	if (anim_name == \"endCharging\"):
+		$CPUParticles2D.emitting = false
+"
+
+[sub_resource type="GDScript" id=5]
+script/source = "extends Node2D
+
+export var actualPower = 100
+export var maxPower = 150
+export var chargeValue = 0.5
+export var drainValue = 0.1
+
+var isPicked =  false
+var isConnected = false
+var isCharging = false
+
+var slowerBatteryDrain = 0
+var fasterBatteryCharge = 0
+var batteryIncMaxPower = 0
+
+func _ready():
+	add_to_group(\"BatteryUpgrade\")
+	pass
+
+func _process(delta):
+	if (actualPower <= 0):
+		if (!$AnimationPlayer.is_playing()): $AnimationPlayer.play(\"noBattery\")
+	else:
+		if ($AnimationPlayer.is_playing()): $AnimationPlayer.stop()
+		if (actualPower == (maxPower + batteryIncMaxPower)):
+			$Sprite.frame = 0
+		elif (actualPower >= 0.5*(maxPower + batteryIncMaxPower)):
+			$Sprite.frame = 1
+		else:
+			$Sprite.frame = 2
+	if (isConnected): drainPower()
+	if (isCharging): chargePower(chargeValue + fasterBatteryCharge)
+
+func drainPower():
+	actualPower -= (drainValue - slowerBatteryDrain)
+	if (actualPower <= 0):
+		actualPower = -1
+		isConnected = false
+
+func chargePower(pChargeValue):
+	actualPower += pChargeValue
+	if (actualPower >= (maxPower + batteryIncMaxPower)):
+		actualPower = (maxPower + batteryIncMaxPower)
+
+func havePower():
+	return actualPower > 0
+
+func pickUp():
+	isConnected = false
+	isCharging = false
+	isPicked = true
+	
+
+"
+
+[sub_resource type="GDScript" id=6]
+script/source = "extends Node2D
+
+
+var timeToCloseWindow = 0.1
+
+var selectedRow = 0
+var selectedIcon = 0 
+export var canBuy = true
+
+func _ready():
+	set_process(false)
+	pass
+
+func _process(delta):
+	if (Input.is_action_just_pressed(\"ui_buy\")):
+		visible = false
+		get_tree().paused = false
+		set_process(false)
+		selectedIcon = 0
+		selectedRow = 0
+	if (Input.is_action_just_pressed(\"PickUp\") and canBuy):
+		var item = $row0.get_child(selectedIcon)
+		if (selectedRow == 1):
+			item = $row1.get_child(selectedIcon)
+		if (item.currentLevel+1 < item.pricesPerLevel.size() and get_parent().score >= item.pricesPerLevel[item.currentLevel+1]):
+			get_parent().score -= item.pricesPerLevel[item.currentLevel+1]
+			item.buy()
+	moveToIcons()
+
+func startTimer():
+	$TimerToCloseWindow.wait_time = timeToCloseWindow
+	$TimerToCloseWindow.start()
+
+func _on_TimerToCloseWindow_timeout():
+	$TimerToCloseWindow.stop()
+	set_process(true)
+	pass # Replace with function body.
+
+func moveToIcons():
+	if Input.is_action_just_pressed('ui_right'):
+		selectedIcon += 1
+		if (selectedIcon > $row0.get_child_count()-1):
+			selectedIcon = 0
+	if Input.is_action_just_pressed(\"ui_left\"):
+		selectedIcon -= 1
+		if (selectedIcon < 0):
+			selectedIcon = $row0.get_child_count()-1
+	if Input.is_action_just_pressed('ui_down'):
+		selectedRow += 1
+		if (selectedRow > 1):
+			selectedRow = 0
+	if Input.is_action_just_pressed('ui_up'):
+		selectedRow -= 1
+		if (selectedRow < 0):
+			selectedRow = 1
+	focusOnIcon()
+		
+func focusOnIcon():
+	if (selectedRow == 0):
+		$IconCursor.position = $row0.get_child(selectedIcon).global_position
+	else:
+		$IconCursor.position = $row1.get_child(selectedIcon).global_position
+	showInfoAboutIcon()
+
+func showInfoAboutIcon():
+	var item = $row0.get_child(selectedIcon)
+	if (selectedRow == 1):
+		item = $row1.get_child(selectedIcon)
+	$BuyContainer/IconTexture.texture = item.iconTexture
+	$BuyContainer/IconName.text = item.iconName
+	if (item.currentLevel+1 < item.pricesPerLevel.size()):
+		$BuyContainer/UpgradeCost.text = \"Upgrade Cost: \" + str(item.pricesPerLevel[item.currentLevel+1])
+	else:
+		$BuyContainer/UpgradeCost.text = \"Maximum Upgrade\" 
+	$BuyContainer/Money.text = \"You have \" + str(get_parent().score) + \" coins.\"
+	if (item.currentLevel+1 < item.pricesPerLevel.size() and get_parent().score < item.pricesPerLevel[item.currentLevel+1]):
+		$BuyContainer/IconName2.text = \"Space: return to game\"
+	else:
+		$BuyContainer/IconName2.text = \"Space: return to game           E: buy\"
+	for i in $BuyContainer/CurrentLevel.get_child_count():
+		if (item.maxLevel != 0):
+			if (i <= item.maxLevel):
+				$BuyContainer/CurrentLevel.get_child(i).visible = true
+				if (i <= item.currentLevel):
+					$BuyContainer/CurrentLevel.get_child(i).self_modulate = Color(\"618b25\")
+				else:
+					$BuyContainer/CurrentLevel.get_child(i).self_modulate = Color.white
+			else:
+				$BuyContainer/CurrentLevel.get_child(i).visible = false
+		else:
+			$BuyContainer/CurrentLevel.get_child(i).visible = false
+
+
+"
+
+[sub_resource type="DynamicFont" id=7]
+size = 27
+font_data = ExtResource( 13 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 30
+font_data = ExtResource( 13 )
+
+[node name="Tutorial" type="Node2D"]
+script = ExtResource( 14 )
+
+[node name="bcg" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Player" parent="." instance=ExtResource( 10 )]
+position = Vector2( 520, 216 )
+
+[node name="Turret" parent="." instance=ExtResource( 9 )]
+position = Vector2( 296, 88 )
+
+[node name="Castle" parent="." instance=ExtResource( 5 )]
+position = Vector2( 848, 576 )
+
+[node name="Navigation2D" type="Navigation2D" parent="."]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
+navpoly = SubResource( 1 )
+
+[node name="LevelBorder" parent="." instance=ExtResource( 6 )]
+script = SubResource( 2 )
+
+[node name="UpgradeStation" parent="." instance=ExtResource( 7 )]
+position = Vector2( 632, 96 )
+script = SubResource( 3 )
+
+[node name="Charger" parent="." instance=ExtResource( 11 )]
+position = Vector2( 896, 88 )
+script = SubResource( 4 )
+
+[node name="Battery" parent="." instance=ExtResource( 8 )]
+position = Vector2( 784, 210 )
+script = SubResource( 5 )
+actualPower = 50000
+maxPower = 50000
+chargeValue = 10.0
+drainValue = 10.0
+
+[node name="Bullet" type="Node2D" parent="."]
+
+[node name="UpgradePanel" parent="." instance=ExtResource( 12 )]
+visible = false
+script = SubResource( 6 )
+canBuy = false
+
+[node name="GameLabel" type="Label" parent="."]
+margin_left = 8.0
+margin_top = 344.0
+margin_right = 803.0
+margin_bottom = 552.0
+custom_colors/font_color = Color( 0.0784314, 0.0784314, 0.0784314, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "Score"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Game2" type="Label" parent="."]
+margin_left = 8.0
+margin_top = 552.0
+margin_right = 803.0
+margin_bottom = 608.0
+custom_colors/font_color = Color( 0.0784314, 0.0784314, 0.0784314, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 8 )
+text = "Press ENTER to show next tutorial."
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Enemy" parent="." instance=ExtResource( 2 )]
+position = Vector2( 68, 304 )
+canMove = false
+
+[node name="Enemy2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 144, 304 )
+currentType = 1
+canMove = false
+
+[node name="Enemy3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 232, 304 )
+currentType = 2
+canMove = false
+
+[node name="Enemy4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 320, 304 )
+currentType = 3
+canMove = false

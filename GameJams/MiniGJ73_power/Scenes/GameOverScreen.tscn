@@ -1,0 +1,102 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/BULKYPIX.TTF" type="DynamicFontData" id=1]
+[ext_resource path="res://Scripts/GameOverScreen.gd" type="Script" id=2]
+
+[sub_resource type="StreamTexture" id=1]
+load_path = "res://.import/winbcg.png-7bc12e7fc9852cc8a838d9a76d9a2e2f.stex"
+
+[sub_resource type="DynamicFont" id=2]
+size = 60
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 60
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 60
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 30
+font_data = ExtResource( 1 )
+
+[node name="GameOverScreen" type="Node2D"]
+pause_mode = 2
+z_index = 9
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 520, 304 )
+texture = SubResource( 1 )
+
+[node name="score" type="Label" parent="."]
+margin_left = 72.0
+margin_top = 64.0
+margin_right = 968.0
+margin_bottom = 216.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.886275, 0.356863, 0.258824, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Game Over!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="score2" type="Label" parent="."]
+margin_left = 72.0
+margin_top = 192.0
+margin_right = 968.0
+margin_bottom = 288.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.0784314, 0.0784314, 0.0784314, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Final score:"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="wave" type="Label" parent="."]
+margin_left = 72.0
+margin_top = 280.0
+margin_right = 968.0
+margin_bottom = 376.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.0784314, 0.0784314, 0.0784314, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Final wave:"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="score3" type="Label" parent="."]
+margin_left = 80.0
+margin_top = 488.0
+margin_right = 968.0
+margin_bottom = 552.0
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.0784314, 0.0784314, 0.0784314, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Thank you for playing my game!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_left = 464.0
+margin_top = 376.0
+margin_right = 576.0
+margin_bottom = 480.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]

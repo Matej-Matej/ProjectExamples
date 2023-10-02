@@ -1,0 +1,367 @@
+[gd_scene load_steps=30 format=2]
+
+[ext_resource path="res://Scripts/Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Player/mainCharacter.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Player/Camera2D.gd" type="Script" id=3]
+[ext_resource path="res://Assets/ShipInside/keysBlueBorder.png" type="Texture" id=4]
+[ext_resource path="res://Assets/ShipInside/keysRedBorder.png" type="Texture" id=5]
+[ext_resource path="res://Assets/ShipInside/KeysBlue.png" type="Texture" id=6]
+[ext_resource path="res://Assets/ShipInside/KeysRed.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Gui/Clock.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Fonts/stormfaze.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://Assets/Gui/ClockStick.png" type="Texture" id=10]
+[ext_resource path="res://Assets/ShipInside/Parts/3.png" type="Texture" id=11]
+[ext_resource path="res://Assets/ShipInside/Parts/2.png" type="Texture" id=12]
+[ext_resource path="res://Assets/ShipInside/Parts/4.png" type="Texture" id=13]
+[ext_resource path="res://Assets/ShipInside/Parts/6.png" type="Texture" id=14]
+[ext_resource path="res://Assets/ShipInside/Parts/1.png" type="Texture" id=15]
+[ext_resource path="res://Assets/ShipInside/Parts/5.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Gui/UpperGuiSomething.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Gui/ButtonHideMinus.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Gui/ButtonHidePlus.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Gui/upperGuiText.png" type="Texture" id=20]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 15.148
+height = 33.6507
+
+[sub_resource type="Animation" id=2]
+resource_name = "Idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -0.1, 0.4, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 9, 10, 9 ]
+}
+
+[sub_resource type="Animation" id=3]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -0.1, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 8 ]
+}
+
+[sub_resource type="DynamicFont" id=4]
+size = 20
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 55
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 55
+font_data = ExtResource( 9 )
+
+[sub_resource type="Animation" id=7]
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("Gui:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -130 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("Gui:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -130 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+length = 2.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Clock:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 2.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 525.857, -354.513 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 525.857, -354.513 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Clock:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2, 2.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 3, 3 ), Vector2( 3, 3 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Clock/Stick:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1, 2, 2.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -1440.0, -1800.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("..:stop")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../Sprite:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.2, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[node name="Player" type="KinematicBody2D"]
+self_modulate = Color( 1, 1, 1, 0.5 )
+scale = Vector2( 0.7, 0.7 )
+collision_mask = 524290
+script = ExtResource( 1 )
+speed = 450
+stop = true
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+hframes = 9
+vframes = 2
+frame = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 4.27765, 0.953453 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Idle = SubResource( 2 )
+anims/Walking = SubResource( 3 )
+
+[node name="LevelRestart" type="Node2D" parent="."]
+
+[node name="Timer" type="Timer" parent="LevelRestart"]
+wait_time = 20.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+script = ExtResource( 3 )
+
+[node name="Gui" type="Node2D" parent="Camera2D"]
+position = Vector2( 0, -130 )
+z_index = 2
+
+[node name="UpperSMTH" type="Sprite" parent="Camera2D/Gui"]
+position = Vector2( 0.251099, -353.948 )
+scale = Vector2( 0.913972, 0.905923 )
+texture = ExtResource( 17 )
+
+[node name="RedBorder" type="Sprite" parent="Camera2D/Gui"]
+position = Vector2( 210.971, -354.76 )
+scale = Vector2( 2.6, 2.6 )
+texture = ExtResource( 5 )
+
+[node name="BlueBorder" type="Sprite" parent="Camera2D/Gui"]
+position = Vector2( 378.648, -354.76 )
+scale = Vector2( 2.6, 2.6 )
+texture = ExtResource( 4 )
+
+[node name="Label2" type="Label" parent="Camera2D/Gui"]
+margin_left = -724.0
+margin_top = -403.751
+margin_right = -482.0
+margin_bottom = -303.751
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Find these parts:"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Keys" type="Node2D" parent="Camera2D/Gui"]
+
+[node name="BlueKeys" type="Sprite" parent="Camera2D/Gui/Keys"]
+position = Vector2( 378.648, -354.76 )
+scale = Vector2( 2.6, 2.6 )
+texture = ExtResource( 6 )
+
+[node name="RedKeys" type="Sprite" parent="Camera2D/Gui/Keys"]
+position = Vector2( 210.971, -354.76 )
+scale = Vector2( 2.6, 2.6 )
+texture = ExtResource( 7 )
+
+[node name="Parts" type="Node2D" parent="Camera2D/Gui"]
+
+[node name="p1" type="Sprite" parent="Camera2D/Gui/Parts"]
+self_modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -411.429, -356.931 )
+rotation = 0.785398
+scale = Vector2( 0.7, 0.6 )
+texture = ExtResource( 15 )
+
+[node name="p2" type="Sprite" parent="Camera2D/Gui/Parts"]
+self_modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -320, -356.931 )
+rotation = 0.785398
+scale = Vector2( 0.7, 0.6 )
+texture = ExtResource( 12 )
+
+[node name="p3" type="Sprite" parent="Camera2D/Gui/Parts"]
+self_modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -238.241, -356.029 )
+rotation = 0.785398
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 11 )
+
+[node name="p4" type="Sprite" parent="Camera2D/Gui/Parts"]
+self_modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -146.812, -356.029 )
+rotation = 0.785398
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 13 )
+
+[node name="p5" type="Sprite" parent="Camera2D/Gui/Parts"]
+self_modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -66.8123, -356.029 )
+rotation = 0.785398
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 16 )
+
+[node name="p6" type="Sprite" parent="Camera2D/Gui/Parts"]
+self_modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 24.6163, -356.029 )
+rotation = 0.785398
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 14 )
+
+[node name="CheckButton" type="CheckButton" parent="Camera2D/Gui"]
+margin_left = 648.021
+margin_top = -284.665
+margin_right = 727.021
+margin_bottom = -229.665
+focus_mode = 0
+custom_icons/off = ExtResource( 18 )
+custom_icons/on = ExtResource( 19 )
+enabled_focus_mode = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="Node2D" parent="Camera2D"]
+position = Vector2( 0, -130 )
+z_index = 3
+
+[node name="Sprite" type="Sprite" parent="Camera2D/Text"]
+position = Vector2( 0, 438.79 )
+scale = Vector2( 1.29752, 2.70566 )
+texture = ExtResource( 20 )
+
+[node name="Label2" type="Label" parent="Camera2D/Text"]
+margin_left = -645.0
+margin_top = 370.0
+margin_right = 640.0
+margin_bottom = 507.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "A"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="Camera2D/Text"]
+wait_time = 5.0
+
+[node name="Clock" type="Node2D" parent="Camera2D"]
+position = Vector2( 525.857, -354.513 )
+z_index = 3
+
+[node name="Sprite" type="Sprite" parent="Camera2D/Clock"]
+scale = Vector2( 1.25, 1.25 )
+texture = ExtResource( 8 )
+
+[node name="Stick" type="Sprite" parent="Camera2D/Clock"]
+scale = Vector2( 1.25, 1.25 )
+texture = ExtResource( 10 )
+
+[node name="Label" type="Label" parent="Camera2D/Clock"]
+margin_left = 43.8572
+margin_top = -38.9999
+margin_right = 134.857
+margin_bottom = 41.0001
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "20"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton" type="TextureButton" parent="Camera2D/Clock"]
+margin_left = -51.0
+margin_top = -48.0
+margin_right = 49.0
+margin_bottom = 50.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D"]
+anims/GoDown = SubResource( 7 )
+anims/GoUp = SubResource( 8 )
+anims/Restart = SubResource( 9 )
+
+[connection signal="timeout" from="LevelRestart/Timer" to="." method="_on_Timer_timeout"]
+[connection signal="toggled" from="Camera2D/Gui/CheckButton" to="Camera2D" method="_on_CheckButton_toggled"]
+[connection signal="timeout" from="Camera2D/Text/Timer" to="." method="_on_Timer2_timeout"]
+[connection signal="pressed" from="Camera2D/Clock/TextureButton" to="." method="_on_TextureButton_pressed"]
+[connection signal="animation_finished" from="Camera2D/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

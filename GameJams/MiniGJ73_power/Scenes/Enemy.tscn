@@ -1,0 +1,218 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Assets/normalEnemy.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Enemy.gd" type="Script" id=2]
+[ext_resource path="res://Assets/fastEnemy.png" type="Texture" id=3]
+[ext_resource path="res://Assets/strongerEnemy.png" type="Texture" id=4]
+[ext_resource path="res://Assets/yellowSquare.png" type="Texture" id=5]
+[ext_resource path="res://Assets/splitterEnemy.png" type="Texture" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 16, 16 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 16, 16 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "fastEnemyMove"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("FastEnemy:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("NormalEnemy:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 5 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "splitterDie"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("SplitterEnemy:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -0.1, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 8, 14 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "splitterMove"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("SplitterEnemy:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -0.1, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 6 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "splitterToFaster"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("SplitterEnemy:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -0.1, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 21, 25 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "splitterToNormal"
+tracks/0/type = "value"
+tracks/0/path = NodePath("SplitterEnemy:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -0.1, 0.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 14, 20 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "splitterToStronger"
+tracks/0/type = "value"
+tracks/0/path = NodePath("SplitterEnemy:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -0.1, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 26, 31 ]
+}
+
+[sub_resource type="Animation" id=10]
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("StrongEnemy:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 2 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[node name="Enemy" type="KinematicBody2D"]
+z_index = 6
+script = ExtResource( 2 )
+
+[node name="NormalEnemy" type="Sprite" parent="."]
+visible = false
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 1 )
+hframes = 6
+frame = 1
+
+[node name="FastEnemy" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 3 )
+
+[node name="StrongEnemy" type="Sprite" parent="."]
+visible = false
+scale = Vector2( 0.875, 0.875 )
+texture = ExtResource( 4 )
+hframes = 3
+
+[node name="SplitterEnemy" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0, -4.42834 )
+texture = ExtResource( 6 )
+hframes = 32
+frame = 26
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource( 1 )
+
+[node name="EnemyArea" type="Area2D" parent="." groups=[
+"EnemyRadius",
+]]
+collision_mask = 140
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyArea"]
+visible = false
+shape = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/fastEnemyMove = SubResource( 3 )
+anims/normalEnemyMove = SubResource( 4 )
+anims/splitterDie = SubResource( 5 )
+anims/splitterMove = SubResource( 6 )
+anims/splitterToFaster = SubResource( 7 )
+anims/splitterToNormal = SubResource( 8 )
+anims/splitterToStronger = SubResource( 9 )
+anims/strongEnemyMove = SubResource( 10 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+visible = false
+position = Vector2( 0, -24 )
+amount = 10
+explosiveness = 1.0
+randomness = 1.0
+texture = ExtResource( 5 )
+emission_shape = 2
+emission_rect_extents = Vector2( 1, 1 )
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 10.0
+scale_amount = 0.2
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

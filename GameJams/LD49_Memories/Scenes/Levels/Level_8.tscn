@@ -1,0 +1,161 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://Scenes/Player/Camera2D.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Levels/Level.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/PuzzleParts/PuzzlePart.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Levels/TileMap.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Levels/flower.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/Enemies/movingEnemy.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Mechanics/CrackingPlatform.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Mechanics/TrapDoor.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Mechanics/Door.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Assets/home.png" type="Texture" id=11]
+[ext_resource path="res://Scenes/PuzzleParts/PuzzleFragment.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/Levels/Level_9.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scenes/Mechanics/EndArea.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scenes/Characters/Rectangle.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Assets/Levels/smallFlower.png" type="Texture" id=16]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+export (Color, RGB) var rectangleColor
+export var haveHeart = false
+
+func _ready():
+	if (haveHeart):
+		$Sprite2.visible = true
+		$HeartAnim.play(\"beat\")
+	else:
+		$Sprite2.visible = false
+	$AnimationPlayer.play(\"idle\")
+	$Sprite.modulate = rectangleColor
+"
+
+[node name="Level_8" type="Node2D"]
+pause_mode = 2
+script = ExtResource( 2 )
+title = "Age 46: Enjoying our life"
+
+[node name="Camera2D" parent="." instance=ExtResource( 1 )]
+cpuTexture = ExtResource( 6 )
+
+[node name="AllPuzzleParts" type="Node2D" parent="."]
+
+[node name="PuzzlePart1" parent="AllPuzzleParts" instance=ExtResource( 3 )]
+topDir = 0
+bottomDir = 0
+leftDir = 2
+rightDir = 0
+hasPlayer = true
+
+[node name="TileMap" parent="AllPuzzleParts/PuzzlePart1" instance=ExtResource( 4 )]
+tile_data = PoolIntArray( 327687, 1073741824, 0, 327688, 1073741824, 0, 327689, 0, 0, 327690, 0, 0, 393223, 1073741824, 0, 393224, 1073741824, 0, 393225, 0, 0, 393226, 0, 0, 458759, 1073741824, 0, 458760, 1073741824, 0, 524295, 1073741824, 0, 524296, 1073741824, 0, 589831, 1073741824, 0, 589832, 1073741824, 0, 655367, 1073741824, 0, 655368, 1073741824, 0, 720903, 1073741824, 0, 720904, 1073741824, 0, 786439, 1073741824, 0, 786440, 1073741824, 0, 851975, 1073741824, 0, 851976, 1073741824, 0, 917504, 1073741824, 0, 917510, 1073741824, 0, 917511, 1073741824, 0, 917512, 1073741824, 0, 917513, 1073741824, 0, 917514, 1073741824, 0, 917515, 1073741824, 0, 917516, 1073741824, 0, 917517, 1073741824, 0, 917518, 1073741824, 0, 917519, 1073741824, 0, 983040, 1073741824, 0, 983046, 1073741824, 0, 983047, 1073741824, 0, 983048, 1073741824, 0, 983049, 1073741824, 0, 983050, 1073741824, 0, 983051, 1073741824, 0, 983052, 1073741824, 0, 983053, 1073741824, 0, 983054, 1073741824, 0, 983055, 1073741824, 0 )
+
+[node name="PuzzlePart2" parent="AllPuzzleParts" instance=ExtResource( 3 )]
+position = Vector2( 0, 1024 )
+rightDir = 2
+
+[node name="home" type="Sprite" parent="AllPuzzleParts/PuzzlePart2"]
+position = Vector2( 208.402, 325.901 )
+scale = Vector2( 0.211315, 0.211315 )
+texture = ExtResource( 11 )
+
+[node name="TileMap" parent="AllPuzzleParts/PuzzlePart2" instance=ExtResource( 4 )]
+tile_data = PoolIntArray( 917504, 1073741824, 0, 917505, 1073741824, 0, 917506, 1073741824, 0, 917507, 1073741824, 0, 917508, 1073741824, 0, 917509, 1073741824, 0, 917510, 1073741824, 0, 917511, 1073741824, 0, 917512, 1073741824, 0, 917513, 1073741824, 0, 917514, 1073741824, 0, 917515, 1073741824, 0, 917516, 1073741824, 0, 917517, 1073741824, 0, 917518, 1073741824, 0, 917519, 1073741824, 0, 983040, 1073741824, 0, 983041, 1073741824, 0, 983042, 1073741824, 0, 983043, 1073741824, 0, 983044, 1073741824, 0, 983045, 1073741824, 0, 983046, 1073741824, 0, 983047, 1073741824, 0, 983048, 1073741824, 0, 983049, 1073741824, 0, 983050, 1073741824, 0, 983051, 1073741824, 0, 983052, 1073741824, 0, 983053, 1073741824, 0, 983054, 1073741824, 0, 983055, 1073741824, 0 )
+
+[node name="Rectangle4" parent="AllPuzzleParts/PuzzlePart2" instance=ExtResource( 15 )]
+position = Vector2( 58.1151, 425.649 )
+scale = Vector2( 0.45, 0.45 )
+script = SubResource( 1 )
+rectangleColor = Color( 0.352941, 0.639216, 0.619608, 1 )
+
+[node name="Rectangle5" parent="AllPuzzleParts/PuzzlePart2" instance=ExtResource( 15 )]
+position = Vector2( 146.414, 425.649 )
+scale = Vector2( 0.45, 0.45 )
+script = SubResource( 1 )
+rectangleColor = Color( 0.352941, 0.639216, 0.419608, 1 )
+
+[node name="Rectangle3" parent="AllPuzzleParts/PuzzlePart2" instance=ExtResource( 15 )]
+position = Vector2( 103.563, 408.62 )
+scale = Vector2( 0.8, 0.8 )
+rectangleColor = Color( 0.313726, 0.54902, 0.843137, 1 )
+
+[node name="EndArea" parent="AllPuzzleParts/PuzzlePart2" instance=ExtResource( 14 )]
+position = Vector2( 96.3026, 406.505 )
+next = ExtResource( 13 )
+
+[node name="PuzzleFragment" parent="AllPuzzleParts/PuzzlePart2" instance=ExtResource( 12 )]
+position = Vector2( 436.788, 416.634 )
+textToShow = "We created home for our children."
+
+[node name="smallFlower" type="Sprite" parent="AllPuzzleParts/PuzzlePart2"]
+position = Vector2( 315.701, 438.201 )
+scale = Vector2( 0.0453141, 0.0453141 )
+texture = ExtResource( 16 )
+
+[node name="smallFlower2" type="Sprite" parent="AllPuzzleParts/PuzzlePart2"]
+position = Vector2( 346.656, 438.201 )
+rotation = -1.83259
+scale = Vector2( 0.0453141, 0.0453141 )
+texture = ExtResource( 16 )
+
+[node name="smallFlower3" type="Sprite" parent="AllPuzzleParts/PuzzlePart2"]
+position = Vector2( 286.336, 438.201 )
+rotation = -1.83259
+scale = Vector2( 0.0453141, 0.0453141 )
+texture = ExtResource( 16 )
+
+[node name="PuzzlePart4" parent="AllPuzzleParts" instance=ExtResource( 3 )]
+position = Vector2( 1025, 0 )
+topDir = 2
+bottomDir = 2
+leftDir = 0
+rightDir = 0
+
+[node name="TileMap" parent="AllPuzzleParts/PuzzlePart4" instance=ExtResource( 4 )]
+tile_data = PoolIntArray( 0, 1073741824, 0, 6, 1073741824, 0, 7, 1073741824, 0, 8, 1073741824, 0, 9, 1073741824, 0, 10, 1073741824, 0, 11, 1073741824, 0, 12, 1073741824, 0, 13, 1073741824, 0, 14, 1073741824, 0, 15, 1073741824, 0, 65536, 1073741824, 0, 65551, 1073741824, 0, 131072, 1073741824, 0, 131087, 1073741824, 0, 196608, 1073741824, 0, 196623, 1073741824, 0, 262144, 1073741824, 0, 262155, 1073741824, 0, 262156, 1073741824, 0, 262157, 1073741824, 0, 262158, 1073741824, 0, 262159, 1073741824, 0, 327691, 1073741824, 0, 327692, 1073741824, 0, 393227, 1073741824, 0, 393228, 1073741824, 0, 458763, 1073741824, 0, 458764, 1073741824, 0, 524299, 1073741824, 0, 524300, 1073741824, 0, 589824, 1073741824, 0, 589825, 1073741824, 0, 589826, 1073741824, 0, 589827, 1073741824, 0, 589828, 1073741824, 0, 589829, 1073741824, 0, 589830, 1073741824, 0, 589831, 1073741824, 0, 589832, 1073741824, 0, 589833, 1073741824, 0, 589834, 1073741824, 0, 589835, 1073741824, 0, 589836, 1073741824, 0, 655360, 1073741824, 0, 655361, 1073741824, 0, 655362, 1073741824, 0, 655363, 1073741824, 0, 655364, 1073741824, 0, 655365, 1073741824, 0, 655366, 1073741824, 0, 655367, 1073741824, 0, 655368, 1073741824, 0, 655369, 1073741824, 0, 655370, 1073741824, 0, 655371, 1073741824, 0, 655372, 1073741824, 0, 655373, 1073741824, 0, 655374, 1073741824, 0, 655375, 1073741824, 0, 720896, 1073741824, 0, 720911, 1073741824, 0, 786432, 1073741824, 0, 786447, 1073741824, 0, 851968, 1073741824, 0, 851983, 1073741824, 0, 917504, 1073741824, 0, 917505, 1073741824, 0, 917506, 1073741824, 0, 917507, 1073741824, 0, 917508, 1073741824, 0, 917509, 1073741824, 0, 917510, 1073741824, 0, 917511, 1073741824, 0, 917512, 1073741824, 0, 917513, 1073741824, 0, 917514, 1073741824, 0, 917515, 1073741824, 0, 917516, 1073741824, 0, 917517, 1073741824, 0, 917518, 1073741824, 0, 917519, 1073741824, 0, 983040, 1073741824, 0, 983041, 1073741824, 0, 983042, 1073741824, 0, 983043, 1073741824, 0, 983044, 1073741824, 0, 983045, 1073741824, 0, 983046, 1073741824, 0, 983047, 1073741824, 0, 983048, 1073741824, 0, 983049, 1073741824, 0, 983050, 1073741824, 0, 983051, 1073741824, 0, 983052, 1073741824, 0, 983053, 1073741824, 0, 983054, 1073741824, 0, 983055, 1073741824, 0 )
+
+[node name="movingEnemy" parent="AllPuzzleParts/PuzzlePart4" instance=ExtResource( 7 )]
+position = Vector2( 82.3323, 405.933 )
+
+[node name="TrapDoor" parent="AllPuzzleParts/PuzzlePart4" instance=ExtResource( 9 )]
+position = Vector2( 418.214, 442.493 )
+
+[node name="Door" parent="AllPuzzleParts/PuzzlePart4/TrapDoor" instance=ExtResource( 10 )]
+position = Vector2( -1394.05, -1474.98 )
+scale = Vector2( 3.33333, 3.33333 )
+tile_data = PoolIntArray( 327680, 1073741824, 0, 393216, 1073741824, 0, 458752, 1073741824, 0, 524288, 1073741824, 0 )
+
+[node name="PuzzleFragment" parent="AllPuzzleParts/PuzzlePart4" instance=ExtResource( 12 )]
+position = Vector2( 281.966, 257.024 )
+textToShow = "We had a dog named Pakkun. He always ran around happily."
+
+[node name="PuzzlePart5" parent="AllPuzzleParts" instance=ExtResource( 3 )]
+position = Vector2( 1024, 1024 )
+topDir = 0
+leftDir = 2
+
+[node name="TileMap" parent="AllPuzzleParts/PuzzlePart5" instance=ExtResource( 4 )]
+tile_data = PoolIntArray( 9, 1073741824, 0, 10, 1073741824, 0, 11, 1073741824, 0, 65545, 1073741824, 0, 65546, 1073741824, 0, 65547, 1073741824, 0, 131081, 1073741824, 0, 131082, 1073741824, 0, 131083, 1073741824, 0, 196617, 1073741824, 0, 196618, 1073741824, 0, 196619, 1073741824, 0, 262153, 1073741824, 0, 262154, 1073741824, 0, 262155, 1073741824, 0, 327689, 1073741824, 0, 327690, 1073741824, 0, 327691, 1073741824, 0, 393225, 1073741824, 0, 393226, 1073741824, 0, 393227, 1073741824, 0, 458761, 1073741824, 0, 458762, 1073741824, 0, 458763, 1073741824, 0, 524297, 1073741824, 0, 524298, 1073741824, 0, 524299, 1073741824, 0, 589833, 1073741824, 0, 589834, 1073741824, 0, 589835, 1073741824, 0, 655369, 1073741824, 0, 655370, 1073741824, 0, 655371, 1073741824, 0, 720905, 1073741824, 0, 720906, 1073741824, 0, 720907, 1073741824, 0, 786441, 1073741824, 0, 786442, 1073741824, 0, 786443, 1073741824, 0, 851977, 1073741824, 0, 851978, 1073741824, 0, 851979, 1073741824, 0, 917504, 1073741824, 0, 917505, 1073741824, 0, 917506, 1073741824, 0, 917507, 1073741824, 0, 917508, 1073741824, 0, 917509, 1073741824, 0, 917510, 1073741824, 0, 917511, 1073741824, 0, 917512, 1073741824, 0, 917513, 1073741824, 0, 917514, 1073741824, 0, 917515, 1073741824, 0, 983040, 1073741824, 0, 983041, 1073741824, 0, 983042, 1073741824, 0, 983043, 1073741824, 0, 983044, 1073741824, 0, 983045, 1073741824, 0, 983046, 1073741824, 0, 983047, 1073741824, 0, 983048, 1073741824, 0, 983049, 1073741824, 0, 983050, 1073741824, 0, 983051, 1073741824, 0 )
+
+[node name="CrackingPlatform" parent="AllPuzzleParts/PuzzlePart5" instance=ExtResource( 8 )]
+position = Vector2( 225.203, 368.581 )
+
+[node name="CrackingPlatform2" parent="AllPuzzleParts/PuzzlePart5" instance=ExtResource( 8 )]
+position = Vector2( 76.4995, 248.01 )
+
+[node name="CrackingPlatform3" parent="AllPuzzleParts/PuzzlePart5" instance=ExtResource( 8 )]
+position = Vector2( 222.5, 132.01 )
+
+[node name="PuzzleFragment" parent="AllPuzzleParts/PuzzlePart5" instance=ExtResource( 12 )]
+position = Vector2( 222.75, 64.2561 )
+textToShow = "She loved red flowers. I always gave her some."
+
+[node name="Player" parent="." instance=ExtResource( 5 )]
+position = Vector2( 426.219, 84.398 )
+scale = Vector2( 1, 1.8 )
+SPEED = 250
+
+[connection signal="editMode" from="Player" to="." method="_on_Player_editMode"]

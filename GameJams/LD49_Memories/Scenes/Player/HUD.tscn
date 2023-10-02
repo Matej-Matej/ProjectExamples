@@ -1,0 +1,185 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Scenes/Player/HUD.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Font/Magnolia Script.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/UI/musicTrue.png" type="Texture" id=3]
+[ext_resource path="res://Assets/UI/reset.png" type="Texture" id=4]
+[ext_resource path="res://Assets/UI/musicFalse.png" type="Texture" id=5]
+[ext_resource path="res://Assets/UI/buttonBackground.png" type="Texture" id=6]
+[ext_resource path="res://Assets/UI/musicFalseP.png" type="Texture" id=7]
+[ext_resource path="res://Assets/UI/musicTrueP.png" type="Texture" id=8]
+[ext_resource path="res://Assets/UI/resetP.png" type="Texture" id=9]
+[ext_resource path="res://Assets/UI/textBackground.png" type="Texture" id=10]
+[ext_resource path="res://backgroundEffect.png" type="Texture" id=11]
+
+[sub_resource type="DynamicFont" id=1]
+size = 80
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "FadeOut"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label:custom_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3.8, 5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.921569, 0.419608, 0.435294, 0.862745 ), Color( 0.921569, 0.419608, 0.435294, 0.862745 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Label:custom_fonts/font:outline_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3.5, 4.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+
+[sub_resource type="DynamicFont" id=3]
+size = 45
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "textAppear"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label2:percent_visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+texture = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 24.0
+margin_top = 472.0
+margin_right = 1000.0
+margin_bottom = 600.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.921569, 0.419608, 0.435294, 0.862745 )
+text = "Level1"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/FadeOut = SubResource( 2 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+self_modulate = Color( 0.921569, 0.419608, 0.435294, 0.862745 )
+margin_left = 8.0
+margin_top = 2.0
+margin_right = 462.0
+margin_bottom = 224.0
+rect_scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -467.58
+margin_top = -268.239
+margin_right = -189.58
+margin_bottom = -168.239
+rect_scale = Vector2( 0.75, 0.75 )
+custom_constants/separation = 23
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResetButton" type="TextureButton" parent="HBoxContainer"]
+margin_right = 100.0
+margin_bottom = 100.0
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 9 )
+
+[node name="MusicOn" type="TextureButton" parent="HBoxContainer"]
+margin_left = 123.0
+margin_right = 208.0
+margin_bottom = 100.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 8 )
+
+[node name="MusicOff" type="TextureButton" parent="HBoxContainer"]
+visible = false
+margin_left = 123.0
+margin_right = 208.0
+margin_bottom = 100.0
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 7 )
+
+[node name="TextureText" type="TextureRect" parent="."]
+visible = false
+self_modulate = Color( 0.921569, 0.419608, 0.435294, 1 )
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -362.5
+margin_top = -258.0
+margin_right = 362.5
+texture = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="."]
+visible = false
+margin_left = 190.0
+margin_top = 365.0
+margin_right = 858.0
+margin_bottom = 630.0
+custom_fonts/font = SubResource( 3 )
+text = "       Lorem Imsum Dolor res Lorem Imsum Dolor res Lorem Imsum Dolor res Lorem Imsum Dolor res"
+align = 1
+autowrap = true
+percent_visible = 0.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextAnim" type="AnimationPlayer" parent="."]
+anims/textAppear = SubResource( 4 )
+
+[node name="TextTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="pressed" from="HBoxContainer/ResetButton" to="." method="_on_ResetButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/MusicOn" to="." method="_on_MusicOn_pressed"]
+[connection signal="pressed" from="HBoxContainer/MusicOff" to="." method="_on_MusicOff_pressed"]
+[connection signal="animation_finished" from="TextAnim" to="." method="_on_TextAnim_animation_finished"]
+[connection signal="timeout" from="TextTimer" to="." method="_on_TextTimer_timeout"]

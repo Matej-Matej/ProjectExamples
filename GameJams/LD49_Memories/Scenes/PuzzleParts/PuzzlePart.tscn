@@ -1,0 +1,175 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/PuzzleParts/PuzzlePart.gd" type="Script" id=2]
+[ext_resource path="res://Assets/puzzlePartLine.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 258, 8 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 232, 232 )
+
+[node name="PuzzlePart" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 512.0
+margin_bottom = 512.0
+color = Color( 0.94902, 0.623529, 0.623529, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Clone" type="Node2D" parent="."]
+z_index = 1
+
+[node name="sides" type="Node2D" parent="Clone"]
+
+[node name="Top" type="Node2D" parent="Clone/sides"]
+position = Vector2( -0.00012207, 0 )
+
+[node name="topNEUTRAL" type="Sprite" parent="Clone/sides/Top"]
+position = Vector2( 256, 8 )
+texture = ExtResource( 4 )
+
+[node name="topTRUE" type="Sprite" parent="Clone/sides/Top"]
+position = Vector2( 256, 8 )
+scale = Vector2( 0.75, 1 )
+texture = ExtResource( 4 )
+
+[node name="topFALSE" type="Sprite" parent="Clone/sides/Top"]
+position = Vector2( 256, 8 )
+scale = Vector2( 0.75, 1 )
+texture = ExtResource( 4 )
+
+[node name="Bottom" type="Node2D" parent="Clone/sides"]
+
+[node name="bottomNEUTRAL" type="Sprite" parent="Clone/sides/Bottom"]
+position = Vector2( 256, 504 )
+texture = ExtResource( 4 )
+
+[node name="bottomTRUE" type="Sprite" parent="Clone/sides/Bottom"]
+position = Vector2( 256, 504 )
+scale = Vector2( 0.75, 1 )
+texture = ExtResource( 4 )
+
+[node name="bottomFALSE" type="Sprite" parent="Clone/sides/Bottom"]
+position = Vector2( 256, 504 )
+scale = Vector2( 0.75, 1 )
+texture = ExtResource( 4 )
+
+[node name="Left" type="Node2D" parent="Clone/sides"]
+
+[node name="leftNEUTRAL" type="Sprite" parent="Clone/sides/Left"]
+position = Vector2( 8, 256 )
+rotation = 1.5708
+texture = ExtResource( 4 )
+
+[node name="leftTRUE" type="Sprite" parent="Clone/sides/Left"]
+position = Vector2( 8, 256 )
+rotation = 1.5708
+scale = Vector2( 0.75, 1 )
+texture = ExtResource( 4 )
+
+[node name="leftFALSE" type="Sprite" parent="Clone/sides/Left"]
+position = Vector2( 8, 256 )
+rotation = 4.71239
+scale = Vector2( 0.75, 1 )
+texture = ExtResource( 4 )
+
+[node name="Right" type="Node2D" parent="Clone/sides"]
+
+[node name="rightNEUTRAL" type="Sprite" parent="Clone/sides/Right"]
+position = Vector2( 504, 256 )
+rotation = 1.5708
+texture = ExtResource( 4 )
+
+[node name="rightTRUE" type="Sprite" parent="Clone/sides/Right"]
+position = Vector2( 504, 256 )
+rotation = 4.71239
+scale = Vector2( 0.75, 1 )
+texture = ExtResource( 4 )
+
+[node name="rightFALSE" type="Sprite" parent="Clone/sides/Right"]
+position = Vector2( 504, 256 )
+rotation = 1.5708
+scale = Vector2( 0.75, 1 )
+texture = ExtResource( 4 )
+
+[node name="Collision" type="Node2D" parent="."]
+
+[node name="Top" type="StaticBody2D" parent="Collision"]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision/Top"]
+position = Vector2( 256, 8 )
+shape = SubResource( 1 )
+
+[node name="Bottom" type="StaticBody2D" parent="Collision"]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision/Bottom"]
+position = Vector2( 256, 504 )
+shape = SubResource( 1 )
+
+[node name="Left" type="StaticBody2D" parent="Collision"]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision/Left"]
+position = Vector2( 8, 256 )
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="Right" type="StaticBody2D" parent="Collision"]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision/Right"]
+position = Vector2( 504, 256 )
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="IsPlayerInsideArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 101
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="IsPlayerInsideArea"]
+position = Vector2( 256, 256 )
+shape = SubResource( 2 )
+
+[node name="RayCasts" type="Node2D" parent="."]
+visible = false
+
+[node name="RCBottom" type="RayCast2D" parent="RayCasts"]
+position = Vector2( 256, 612 )
+enabled = true
+cast_to = Vector2( 0, 300 )
+collision_mask = 4
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="RCRight" type="RayCast2D" parent="RayCasts"]
+position = Vector2( 608, 256 )
+enabled = true
+cast_to = Vector2( 300, 0 )
+collision_mask = 4
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="RCUp" type="RayCast2D" parent="RayCasts"]
+position = Vector2( 256, -96 )
+enabled = true
+cast_to = Vector2( 0, -300 )
+collision_mask = 4
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="RCLeft" type="RayCast2D" parent="RayCasts"]
+position = Vector2( -96, 256 )
+enabled = true
+cast_to = Vector2( -300, 0 )
+collision_mask = 4
+collide_with_areas = true
+collide_with_bodies = false
+
+[connection signal="area_entered" from="IsPlayerInsideArea" to="." method="_on_IsPlayerInsideArea_area_entered"]
+[connection signal="body_entered" from="IsPlayerInsideArea" to="." method="_on_IsPlayerInsideArea_body_entered"]

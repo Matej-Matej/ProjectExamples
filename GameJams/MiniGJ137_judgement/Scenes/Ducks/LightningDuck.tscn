@@ -1,0 +1,104 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/Ducks/LightningDuck.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/Ducks/LightningDuck.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Items/LightningPoint.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 9, 13.25 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "fly"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -0.1, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 11, 13 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "goUp"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -0.1, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1, 10 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "idle"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[node name="LightningDuck" type="Node2D"]
+scale = Vector2( 2, 2 )
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -30 )
+texture = ExtResource( 1 )
+hframes = 14
+frame = 11
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 0, -11.25 )
+shape = SubResource( 1 )
+
+[node name="LightningSpaces" type="Node2D" parent="."]
+
+[node name="LightningPoint" parent="LightningSpaces" instance=ExtResource( 3 )]
+
+[node name="LightningPoint2" parent="LightningSpaces" instance=ExtResource( 3 )]
+
+[node name="LightningPoint3" parent="LightningSpaces" instance=ExtResource( 3 )]
+
+[node name="LightningPoint4" parent="LightningSpaces" instance=ExtResource( 3 )]
+
+[node name="LightningPoint5" parent="LightningSpaces" instance=ExtResource( 3 )]
+
+[node name="LightningPoint6" parent="LightningSpaces" instance=ExtResource( 3 )]
+
+[node name="LightningPoint7" parent="LightningSpaces" instance=ExtResource( 3 )]
+
+[node name="LightningPoint8" parent="LightningSpaces" instance=ExtResource( 3 )]
+
+[node name="LightningPoint9" parent="LightningSpaces" instance=ExtResource( 3 )]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/fly = SubResource( 4 )
+anims/goUp = SubResource( 3 )
+anims/idle = SubResource( 2 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

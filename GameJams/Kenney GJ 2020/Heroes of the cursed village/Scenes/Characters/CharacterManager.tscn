@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scenes/Characters/Character_2.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Characters/Character_3.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Characters/Character_1.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/Characters/CharacterManager.gd" type="Script" id=5]
+[ext_resource path="res://Scenes/Characters/ChangeCharacter.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/Border/platformPack_tile022.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Border/platformPack_tile009.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Border/platformPack_tile021.png" type="Texture" id=10]
+
+[node name="CharacterManager" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="AllCharacters" type="Node2D" parent="."]
+
+[node name="Character_1" parent="AllCharacters" instance=ExtResource( 3 )]
+visible = false
+currentCharacter = true
+
+[node name="Character_2" parent="AllCharacters" instance=ExtResource( 1 )]
+visible = false
+
+[node name="Character_3" parent="AllCharacters" instance=ExtResource( 2 )]
+visible = false
+
+[node name="Camera2D" type="Camera2D" parent="AllCharacters"]
+current = true
+
+[node name="ChangeCharacter" parent="." instance=ExtResource( 6 )]
+
+[node name="char1" type="Sprite" parent="ChangeCharacter"]
+visible = false
+position = Vector2( -2.55795e-13, -108.499 )
+rotation = -1.74846e-07
+scale = Vector2( 2.053, 2.053 )
+texture = ExtResource( 9 )
+
+[node name="char2" type="Sprite" parent="ChangeCharacter"]
+visible = false
+position = Vector2( 128, 104 )
+scale = Vector2( 1.955, 1.955 )
+texture = ExtResource( 10 )
+
+[node name="char3" type="Sprite" parent="ChangeCharacter"]
+visible = false
+position = Vector2( -128, 104 )
+rotation = -1.74846e-07
+scale = Vector2( 2.0535, 2.0535 )
+texture = ExtResource( 8 )
+[connection signal="mouse_entered" from="ChangeCharacter/Character_1" to="." method="_on_Character_1_mouse_entered"]
+[connection signal="mouse_entered" from="ChangeCharacter/Character_2" to="." method="_on_Character_2_mouse_entered"]
+[connection signal="mouse_entered" from="ChangeCharacter/Character_3" to="." method="_on_Character_3_mouse_entered"]
+
+[editable path="ChangeCharacter"]

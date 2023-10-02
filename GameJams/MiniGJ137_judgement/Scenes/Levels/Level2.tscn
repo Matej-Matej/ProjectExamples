@@ -1,0 +1,58 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scenes/TileSet/TileSet.tres" type="TileSet" id=1]
+[ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Ducks/TransportingDuck.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Items/FinishingGate.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Levels/TileMap.gd" type="Script" id=5]
+[ext_resource path="res://Scenes/Items/DeathZone.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Items/backgroundTileSet.tres" type="TileSet" id=7]
+[ext_resource path="res://Scenes/Levels/Level.gd" type="Script" id=8]
+[ext_resource path="res://Scenes/Levels/Level3.tscn" type="PackedScene" id=9]
+
+[node name="Level2" type="Node2D"]
+script = ExtResource( 8 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -1523.0
+margin_top = -1438.0
+margin_right = 2653.0
+margin_bottom = 2738.0
+color = Color( 0.668152, 0.868988, 0.960938, 1 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 48, 48 )
+format = 1
+tile_data = PoolIntArray( 0, 37, 0, 1, 37, 0, 2, 37, 0, 3, 37, 0, 4, 37, 0, 5, 26, 0, 6, 37, 0, 7, 37, 0, 8, 37, 0, 9, 37, 0, 10, 37, 0, 11, 37, 0, 12, 37, 0, 13, 37, 0, 14, 37, 0, 15, 37, 0, 16, 37, 0, 17, 37, 0, 18, 37, 0, 19, 37, 0, 20, 37, 0, 21, 37, 0, 65536, 37, 0, 65537, 0, 0, 65538, 2, 0, 65539, 8, 0, 65540, 11, 0, 65541, 3, 0, 65542, 2, 0, 65543, 10, 0, 65544, 12, 0, 65545, 11, 0, 65546, 8, 0, 65547, 5, 0, 65548, 3, 0, 65549, 4, 0, 65550, 65, 0, 65551, 1, 0, 65552, 11, 0, 65553, 8, 0, 65554, 4, 0, 65555, 5, 0, 65556, 6, 0, 65557, 37, 0, 131072, 27, 0, 131073, 21, 0, 131086, -1073741763, 0, 131092, 33, 0, 131093, 28, 0, 196608, 37, 0, 196609, 14, 0, 196622, -1073741766, 0, 196628, 34, 0, 196629, 37, 0, 262144, 37, 0, 262145, 22, 0, 262148, -1610612672, 0, 262151, -1610612672, 0, 262154, -1610612672, 0, 262156, 1610612799, 0, 262157, 60, 0, 262158, 59, 0, 262162, 62, 0, 262163, 1610612794, 0, 262164, -1610612671, 0, 262165, 37, 0, 327680, 37, 0, 327681, 32, 0, 327694, -1073741764, 0, 327695, -1610612672, 0, 327700, 40, 0, 327701, 37, 0, 393216, 37, 0, 393217, 30, 0, 393230, -1073741763, 0, 393232, -1073741760, 0, 393236, 42, 0, 393237, 27, 0, 458752, 37, 0, 458753, 22, 0, 458766, -1073741762, 0, 458771, 64, 0, 458772, 41, 0, 458773, 37, 0, 524288, 37, 0, 524289, 32, 0, 524308, 40, 0, 524309, 37, 0, 589824, 28, 0, 589825, 50, 0, 589826, 45, 0, 589827, 46, 0, 589828, 54, 0, 589829, 55, 0, 589830, 57, 0, 589833, 62, 0, 589834, 63, 0, 589842, 64, 0, 589844, 35, 0, 589845, 37, 0, 655360, 37, 0, 655361, 37, 0, 655362, 28, 0, 655363, 37, 0, 655364, 37, 0, 655365, 29, 0, 655366, 32, 0, 655373, 64, 0, 655375, 64, 0, 655380, 33, 0, 655381, 1610612773, 0, 720896, 37, 0, 720897, 37, 0, 720898, 37, 0, 720899, 37, 0, 720900, 26, 0, 720901, 37, 0, 720902, 31, 0, 720916, 34, 0, 720917, 1610612765, 0, 786432, 37, 0, 786433, 37, 0, 786434, 37, 0, 786435, 37, 0, 786436, 37, 0, 786437, 37, 0, 786438, 38, 0, 786452, 34, 0, 786453, 1610612773, 0 )
+script = ExtResource( 5 )
+
+[node name="TileMap2" type="TileMap" parent="TileMap"]
+tile_set = ExtResource( 7 )
+cell_size = Vector2( 48, 48 )
+format = 1
+tile_data = PoolIntArray( 196624, 9, 0, 393220, 5, 0, 393223, 8, 0, 393226, 7, 0, 524300, 6, 0 )
+
+[node name="TransportingDuck" parent="TileMap" instance=ExtResource( 3 )]
+position = Vector2( 913, 159 )
+
+[node name="AnimatedSprite" parent="TileMap/TransportingDuck" index="0"]
+position = Vector2( 0, 1 )
+frame = 3
+
+[node name="TransportingCage" parent="TileMap/TransportingDuck" index="2"]
+position = Vector2( -769, -23 )
+
+[node name="FinishingGate" parent="TileMap" instance=ExtResource( 4 )]
+position = Vector2( 624, 156 )
+next = ExtResource( 9 )
+
+[node name="DeathZone" parent="TileMap" instance=ExtResource( 6 )]
+position = Vector2( 650, 625 )
+scale = Vector2( 5.8, 1 )
+
+[node name="Player" parent="TileMap" instance=ExtResource( 2 )]
+position = Vector2( 120, 415 )
+enableCamera = false
+
+[editable path="TileMap/TransportingDuck"]

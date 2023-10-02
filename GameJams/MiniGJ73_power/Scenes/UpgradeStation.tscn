@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/upgrademachine.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/UpgradeStation.gd" type="Script" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 33.1855
+height = 36.668
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 98.3358, 80 )
+
+[node name="UpgradeStation" type="Node2D"]
+scale = Vector2( 0.976246, 1 )
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 1 )
+hframes = 2
+
+[node name="BatteryPosition" type="Position2D" parent="."]
+position = Vector2( -117.752, 10.5773 )
+
+[node name="BatteryRadius" type="Area2D" parent="."]
+position = Vector2( -122.92, 0 )
+collision_layer = 524288
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BatteryRadius"]
+position = Vector2( 6.50411, -0.793701 )
+z_index = 5
+shape = SubResource( 1 )
+
+[node name="BuyingRadius" type="Area2D" parent="." groups=[
+"UpgradeStation",
+]]
+collision_layer = 256
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BuyingRadius"]
+position = Vector2( 32.7786, 5.68434e-14 )
+shape = SubResource( 2 )

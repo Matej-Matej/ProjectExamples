@@ -1,0 +1,198 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Maps/Map.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Font/LapsusPro-Bold.otf" type="DynamicFontData" id=3]
+[ext_resource path="res://Assets/cursor.png" type="Texture" id=4]
+[ext_resource path="res://Assets/SFX/L4.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Scenes/Levels/Level_4.gd" type="Script" id=6]
+[ext_resource path="res://Assets/Flag/nightBcg.png" type="Texture" id=7]
+[ext_resource path="res://Scenes/FontSpeedLabel.tscn" type="PackedScene" id=8]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+
+func _ready():
+	pass
+
+
+func _on_Area2D_body_entered(body):	
+	if (body.is_in_group(\"Player\")):
+		get_tree().change_scene(\"res://Scenes/GameOverScreen.tscn\")
+"
+
+[sub_resource type="StreamTexture" id=2]
+flags = 4
+load_path = "res://.import/Timmy.png-983385f4b66d9550bf58ca65078ddeb6.stex"
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 32, 32 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 576, 10 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 50
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 40
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
+
+[node name="Level_4" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 7 )
+centered = false
+
+[node name="Map" parent="." instance=ExtResource( 2 )]
+
+[node name="CollisionShape2D" parent="Map/StaticBody2D" index="0"]
+position = Vector2( 3, 304 )
+
+[node name="CollisionShape2D2" parent="Map/StaticBody2D" index="1"]
+position = Vector2( 1022, 303 )
+
+[node name="CollisionShape2D3" parent="Map/StaticBody2D" index="2"]
+position = Vector2( 512, 583.251 )
+
+[node name="Flag2" type="Node2D" parent="."]
+position = Vector2( 512, 88 )
+script = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Flag2"]
+position = Vector2( 0.00500488, -3.02052 )
+scale = Vector2( 0.5, 0.5 )
+texture = SubResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="Flag2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flag2/Area2D"]
+shape = SubResource( 3 )
+
+[node name="Positions" type="Node2D" parent="."]
+
+[node name="Position2D" type="Position2D" parent="Positions"]
+position = Vector2( 32, -24 )
+
+[node name="Position2D2" type="Position2D" parent="Positions"]
+position = Vector2( 96, -24 )
+
+[node name="Position2D3" type="Position2D" parent="Positions"]
+position = Vector2( 160.854, -24 )
+
+[node name="Position2D4" type="Position2D" parent="Positions"]
+position = Vector2( 224, -24 )
+
+[node name="Position2D5" type="Position2D" parent="Positions"]
+position = Vector2( 290, -22 )
+
+[node name="Position2D6" type="Position2D" parent="Positions"]
+position = Vector2( 354, -22 )
+
+[node name="Position2D7" type="Position2D" parent="Positions"]
+position = Vector2( 418.854, -22 )
+
+[node name="Position2D8" type="Position2D" parent="Positions"]
+position = Vector2( 482, -22 )
+
+[node name="Position2D9" type="Position2D" parent="Positions"]
+position = Vector2( 546, -22 )
+
+[node name="Position2D10" type="Position2D" parent="Positions"]
+position = Vector2( 610, -22 )
+
+[node name="Position2D11" type="Position2D" parent="Positions"]
+position = Vector2( 674.854, -22 )
+
+[node name="Position2D12" type="Position2D" parent="Positions"]
+position = Vector2( 738, -22 )
+
+[node name="Position2D13" type="Position2D" parent="Positions"]
+position = Vector2( 802, -22 )
+
+[node name="Position2D14" type="Position2D" parent="Positions"]
+position = Vector2( 866, -22 )
+
+[node name="Position2D15" type="Position2D" parent="Positions"]
+position = Vector2( 930.854, -22 )
+
+[node name="Position2D16" type="Position2D" parent="Positions"]
+position = Vector2( 994, -22 )
+
+[node name="SpawnEnemy" type="Timer" parent="."]
+
+[node name="FlagChildren" type="Node2D" parent="."]
+
+[node name="killFlagArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killFlagArea"]
+position = Vector2( 520, 583.251 )
+shape = SubResource( 4 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="ButtonControl" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_right = 1024.0
+margin_bottom = 192.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ButtonControl"]
+anchor_right = 1.0
+margin_left = 142.0
+margin_top = 128.0
+margin_right = -135.0
+margin_bottom = 535.0
+custom_fonts/normal_font = SubResource( 5 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+bbcode_enabled = true
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 160.854, 544 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Label" type="Label" parent="."]
+margin_left = 456.0
+margin_top = 16.0
+margin_right = 564.0
+margin_bottom = 59.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0.894118, 0.819608, 0.0196078, 1 )
+text = "Timmy"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MouseCursor" type="Sprite" parent="."]
+position = Vector2( 512, 304 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 4 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+autoplay = true
+
+[node name="FontSpeedLabel" parent="." instance=ExtResource( 8 )]
+position = Vector2( 808, 569.875 )
+[connection signal="body_entered" from="Flag2/Area2D" to="Flag2" method="_on_Area2D_body_entered"]
+[connection signal="timeout" from="SpawnEnemy" to="." method="_on_SpawnEnemy_timeout"]
+[connection signal="area_entered" from="killFlagArea" to="." method="_on_killFlagArea_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+[editable path="Map"]

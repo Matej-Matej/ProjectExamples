@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Font/LapsusPro-Bold.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://Assets/Flag/cloud.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Player/Cloud.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 25
+font_data = ExtResource( 1 )
+
+[node name="Cloud" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Sprite" type="TextureButton" parent="."]
+margin_right = 266.0
+margin_bottom = 177.0
+texture_normal = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchor_right = 1.0
+margin_top = 177.0
+margin_right = 272.0
+margin_bottom = 272.0
+custom_fonts/normal_font = SubResource( 1 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+bbcode_enabled = true
+bbcode_text = "I am soo tired"
+text = "I am soo tired"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="button_down" from="Sprite" to="." method="_on_Sprite_button_down"]
+[connection signal="button_up" from="Sprite" to="." method="_on_Sprite_button_up"]

@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scripts/Platforms/Platform.gd" type="Script" id=1]
+[ext_resource path="res://Assets/towerDefense_tile111.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Particles/star_06.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+resource_local_to_scene = true
+extents = Vector2( 33.8953, 36 )
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 0.490909 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=3]
+curve = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+emission_shape = 1
+emission_sphere_radius = 50.0
+flag_disable_z = true
+gravity = Vector3( 0, 10, 0 )
+angular_velocity = 82.76
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+tangential_accel = 12.0
+scale = 0.1
+scale_curve = SubResource( 3 )
+hue_variation = -0.03
+hue_variation_random = 1.0
+
+[node name="Platform" type="StaticBody2D"]
+collision_layer = 2147483650
+script = ExtResource( 1 )
+actualTypeOfMoving = 2
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 32.3482, 30.9324 )
+scale = Vector2( 0.546498, 0.561246 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 33, 30 )
+shape = SubResource( 1 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 30, 27 )
+amount = 4
+process_material = SubResource( 4 )
+texture = ExtResource( 3 )

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Levels/StartButton.gd" type="Script" id=1]
+
+[sub_resource type="StreamTexture" id=1]
+flags = 4
+load_path = "res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.stex"
+
+[node name="GameOverScreen" type="Node2D"]
+
+[node name="StartButton" type="TextureButton" parent="."]
+margin_left = 512.0
+margin_top = 512.0
+margin_right = 576.0
+margin_bottom = 576.0
+texture_normal = SubResource( 1 )
+script = ExtResource( 1 )
+
+[connection signal="pressed" from="StartButton" to="StartButton" method="_on_StartButton_pressed"]

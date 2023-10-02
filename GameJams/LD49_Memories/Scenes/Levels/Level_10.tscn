@@ -1,0 +1,206 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://Scenes/Player/Camera2D.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Levels/Level.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/PuzzleParts/PuzzlePart.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Levels/TileMap.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/PH/circle.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/PuzzleParts/PuzzleFragment.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Menu/epilogue.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/Levels/smallFlower.png" type="Texture" id=9]
+[ext_resource path="res://Scenes/Levels/Area2D.gd" type="Script" id=10]
+[ext_resource path="res://Assets/Levels/jap1.png" type="Texture" id=12]
+[ext_resource path="res://Assets/church.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Levels/hosp.png" type="Texture" id=14]
+[ext_resource path="res://Assets/home.png" type="Texture" id=15]
+[ext_resource path="res://Assets/bike.png" type="Texture" id=16]
+[ext_resource path="res://Assets/grave.png" type="Texture" id=17]
+[ext_resource path="res://Scenes/Mechanics/EndArea.tscn" type="PackedScene" id=18]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 229.589 )
+
+[node name="Level_10" type="Node2D"]
+pause_mode = 2
+script = ExtResource( 2 )
+canUseEditMode = false
+neutralWallColor = Color( 0.890196, 0.427451, 0.0901961, 1 )
+trueWallColor = Color( 0, 0.690196, 0.960784, 1 )
+falseWallColor = Color( 0.72549, 0.733333, 0.8, 1 )
+title = "Age 74: Meeting her again"
+
+[node name="Camera2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 4.82752 )
+cpuTexture = ExtResource( 6 )
+isParticlesActive = false
+
+[node name="AllPuzzleParts" type="Node2D" parent="."]
+
+[node name="PuzzlePart1" parent="AllPuzzleParts" instance=ExtResource( 3 )]
+rightDir = 0
+hasPlayer = true
+
+[node name="TileMap" parent="AllPuzzleParts/PuzzlePart1" instance=ExtResource( 4 )]
+tile_data = PoolIntArray( 0, 0, 0, 65536, 0, 0, 131072, 0, 0, 196608, 0, 0, 262144, 0, 0, 327680, 0, 0, 393216, 0, 0, 458752, 0, 0, 524288, 0, 0, 589824, 0, 0, 655360, 0, 0, 720896, 0, 0, 786432, 0, 0, 851968, 0, 0, 917504, 0, 0, 983040, 0, 0, 983041, 0, 0, 983042, 0, 0, 983043, 0, 0, 983044, 0, 0, 983045, 0, 0, 983046, 0, 0, 983047, 0, 0, 983048, 0, 0, 983049, 0, 0, 983050, 0, 0, 983051, 0, 0, 983052, 0, 0, 983053, 0, 0, 983054, 0, 0, 983055, 0, 0 )
+
+[node name="PuzzlePart2" parent="AllPuzzleParts" instance=ExtResource( 3 )]
+position = Vector2( 512, 0 )
+leftDir = 2
+rightDir = 0
+
+[node name="TileMap" parent="AllPuzzleParts/PuzzlePart2" instance=ExtResource( 4 )]
+tile_data = PoolIntArray( 983040, 0, 0, 983041, 0, 0, 983042, 0, 0, 983043, 0, 0, 983044, 0, 0, 983045, 0, 0, 983046, 0, 0, 983047, 0, 0, 983048, 0, 0, 983049, 0, 0, 983050, 0, 0, 983051, 0, 0, 983052, 0, 0, 983053, 0, 0, 983054, 0, 0, 983055, 0, 0 )
+
+[node name="bike" type="Sprite" parent="AllPuzzleParts/PuzzlePart2"]
+position = Vector2( 295.812, 453.019 )
+scale = Vector2( 0.159159, 0.159159 )
+texture = ExtResource( 16 )
+
+[node name="PuzzlePart5" parent="AllPuzzleParts" instance=ExtResource( 3 )]
+position = Vector2( 1024, 0 )
+leftDir = 2
+rightDir = 0
+
+[node name="jap1" type="Sprite" parent="AllPuzzleParts/PuzzlePart5"]
+self_modulate = Color( 1, 1, 1, 0.784314 )
+position = Vector2( 255.674, 392.909 )
+texture = ExtResource( 12 )
+
+[node name="TileMap" parent="AllPuzzleParts/PuzzlePart5" instance=ExtResource( 4 )]
+tile_data = PoolIntArray( 983040, 0, 0, 983041, 0, 0, 983042, 0, 0, 983043, 0, 0, 983044, 0, 0, 983045, 0, 0, 983046, 0, 0, 983047, 0, 0, 983048, 0, 0, 983049, 0, 0, 983050, 0, 0, 983051, 0, 0, 983052, 0, 0, 983053, 0, 0, 983054, 0, 0, 983055, 0, 0 )
+
+[node name="PuzzleFragment" parent="AllPuzzleParts/PuzzlePart5" instance=ExtResource( 7 )]
+position = Vector2( 259.207, 431.512 )
+textToShow = "I wish I would have spend more time with her."
+
+[node name="PuzzlePart3" parent="AllPuzzleParts" instance=ExtResource( 3 )]
+position = Vector2( 1536, 0 )
+leftDir = 2
+rightDir = 0
+
+[node name="TileMap" parent="AllPuzzleParts/PuzzlePart3" instance=ExtResource( 4 )]
+tile_data = PoolIntArray( 983040, 1073741824, 0, 983041, 1073741824, 0, 983042, 1073741824, 0, 983043, 1073741824, 0, 983044, 1073741824, 0, 983045, 1073741824, 0, 983046, 1073741824, 0, 983047, 1073741824, 0, 983048, 1073741824, 0, 983049, 1073741824, 0, 983050, 1073741824, 0, 983051, 1073741824, 0, 983052, 1073741824, 0, 983053, 1073741824, 0, 983054, 1073741824, 0, 983055, 1073741824, 0 )
+
+[node name="church" type="Sprite" parent="AllPuzzleParts/PuzzlePart3"]
+position = Vector2( 253.053, 295.423 )
+scale = Vector2( 0.215757, 0.215757 )
+texture = ExtResource( 13 )
+
+[node name="PuzzlePart6" parent="AllPuzzleParts" instance=ExtResource( 3 )]
+position = Vector2( 2048, 0 )
+leftDir = 2
+rightDir = 0
+
+[node name="hosp" type="Sprite" parent="AllPuzzleParts/PuzzlePart6"]
+position = Vector2( 231.564, 352.166 )
+scale = Vector2( 0.214951, 0.214951 )
+texture = ExtResource( 14 )
+
+[node name="TileMap" parent="AllPuzzleParts/PuzzlePart6" instance=ExtResource( 4 )]
+tile_data = PoolIntArray( 983040, 1073741824, 0, 983041, 1073741824, 0, 983042, 1073741824, 0, 983043, 1073741824, 0, 983044, 1073741824, 0, 983045, 1073741824, 0, 983046, 1073741824, 0, 983047, 1073741824, 0, 983048, 1073741824, 0, 983049, 1073741824, 0, 983050, 1073741824, 0, 983051, 1073741824, 0, 983052, 1073741824, 0, 983053, 1073741824, 0, 983054, 1073741824, 0, 983055, 1073741824, 0 )
+
+[node name="PuzzleFragment" parent="AllPuzzleParts/PuzzlePart6" instance=ExtResource( 7 )]
+position = Vector2( 444.746, 439.976 )
+textToShow = "Our journey .. I wish I could live it again."
+
+[node name="PuzzlePart7" parent="AllPuzzleParts" instance=ExtResource( 3 )]
+position = Vector2( 2560, 0 )
+leftDir = 2
+rightDir = 0
+
+[node name="home" type="Sprite" parent="AllPuzzleParts/PuzzlePart7"]
+position = Vector2( 218.785, 359.88 )
+scale = Vector2( 0.211315, 0.211315 )
+texture = ExtResource( 15 )
+
+[node name="TileMap" parent="AllPuzzleParts/PuzzlePart7" instance=ExtResource( 4 )]
+tile_data = PoolIntArray( 983040, 1073741824, 0, 983041, 1073741824, 0, 983042, 1073741824, 0, 983043, 1073741824, 0, 983044, 1073741824, 0, 983045, 1073741824, 0, 983046, 1073741824, 0, 983047, 1073741824, 0, 983048, 1073741824, 0, 983049, 0, 0, 983050, 0, 0, 983051, 0, 0, 983052, 0, 0, 983053, 0, 0, 983054, 0, 0, 983055, 0, 0 )
+
+[node name="PuzzlePart8" parent="AllPuzzleParts" instance=ExtResource( 3 )]
+position = Vector2( 3072, 0 )
+leftDir = 2
+
+[node name="grave" type="Sprite" parent="AllPuzzleParts/PuzzlePart8"]
+position = Vector2( 295.229, 429.189 )
+scale = Vector2( 0.235248, 0.235248 )
+texture = ExtResource( 17 )
+
+[node name="grave2" type="Sprite" parent="AllPuzzleParts/PuzzlePart8"]
+position = Vector2( 409.643, 429.189 )
+scale = Vector2( 0.235248, 0.235248 )
+texture = ExtResource( 17 )
+
+[node name="TileMap" parent="AllPuzzleParts/PuzzlePart8" instance=ExtResource( 4 )]
+tile_data = PoolIntArray( 15, 0, 0, 65551, 0, 0, 131087, 0, 0, 196623, 0, 0, 262159, 0, 0, 327695, 0, 0, 393231, 0, 0, 458767, 0, 0, 524303, 0, 0, 589839, 0, 0, 655375, 0, 0, 720911, 0, 0, 786447, 0, 0, 851983, 0, 0, 917519, 0, 0, 983040, 0, 0, 983041, 0, 0, 983042, 0, 0, 983043, 0, 0, 983044, 0, 0, 983045, 0, 0, 983046, 0, 0, 983047, 0, 0, 983048, 0, 0, 983049, 0, 0, 983050, 0, 0, 983051, 0, 0, 983052, 0, 0, 983053, 0, 0, 983054, 0, 0, 983055, 0, 0 )
+
+[node name="EndArea" parent="AllPuzzleParts/PuzzlePart8" instance=ExtResource( 18 )]
+position = Vector2( 429.636, 441.297 )
+next = ExtResource( 8 )
+
+[node name="PuzzleFragment" parent="AllPuzzleParts/PuzzlePart8" instance=ExtResource( 7 )]
+position = Vector2( 114.551, 444.063 )
+textToShow = "But I will meet you again soon."
+
+[node name="smallFlower" type="Sprite" parent="AllPuzzleParts/PuzzlePart8"]
+position = Vector2( 273.156, 450.283 )
+scale = Vector2( 0.0453141, 0.0453141 )
+texture = ExtResource( 9 )
+
+[node name="Player" parent="." instance=ExtResource( 5 )]
+position = Vector2( 76.9908, 452.675 )
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource( 10 )
+scaleY = 1.2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 786.766, 251.875 )
+shape = SubResource( 1 )
+
+[node name="Area2D2" type="Area2D" parent="."]
+position = Vector2( 695.281, 0 )
+script = ExtResource( 10 )
+value = 250
+scaleY = 1.4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2( 786.766, 251.875 )
+shape = SubResource( 1 )
+
+[node name="Area2D3" type="Area2D" parent="."]
+position = Vector2( 1488.18, 0 )
+script = ExtResource( 10 )
+value = 200
+scaleY = 1.6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
+position = Vector2( 786.766, 251.875 )
+shape = SubResource( 1 )
+
+[node name="Area2D4" type="Area2D" parent="."]
+position = Vector2( 1962.82, 0 )
+script = ExtResource( 10 )
+value = 150
+scaleY = 1.7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D4"]
+position = Vector2( 786.766, 251.875 )
+shape = SubResource( 1 )
+
+[node name="Area2D5" type="Area2D" parent="."]
+position = Vector2( 2395.08, 0 )
+script = ExtResource( 10 )
+value = 80
+scaleY = 1.8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D5"]
+position = Vector2( 786.766, 251.875 )
+shape = SubResource( 1 )
+
+[connection signal="editMode" from="Player" to="." method="_on_Player_editMode"]
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="Area2D2" to="Area2D2" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="Area2D3" to="Area2D3" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="Area2D4" to="Area2D4" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="Area2D5" to="Area2D5" method="_on_Area2D_body_entered"]

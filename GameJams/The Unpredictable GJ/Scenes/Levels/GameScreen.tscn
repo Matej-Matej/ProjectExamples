@@ -1,0 +1,491 @@
+[gd_scene load_steps=58 format=2]
+
+[ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Ship/Ship.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Door/Door.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Gui/vent.png" type="Texture" id=4]
+[ext_resource path="res://Assets/ShipInside/KeysRed.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/Door/Keys.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Ship/Parts.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scripts/Levels/GameScreen.gd" type="Script" id=8]
+[ext_resource path="res://Assets/Waves/Waves.png" type="Texture" id=9]
+[ext_resource path="res://Assets/mapBCG.png" type="Texture" id=10]
+[ext_resource path="res://Assets/ShipInside/DoorOut.png" type="Texture" id=11]
+[ext_resource path="res://Scenes/Levels/RadioactiveJumpPad.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Assets/BCG/background.png" type="Texture" id=13]
+[ext_resource path="res://icon.png" type="Texture" id=14]
+[ext_resource path="res://Assets/BCG/marsBGR.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Waves/block.png" type="Texture" id=16]
+[ext_resource path="res://Scripts/Blocks.gd" type="Script" id=17]
+[ext_resource path="res://Assets/Waves/Robot.png" type="Texture" id=18]
+[ext_resource path="res://Assets/zofka.png" type="Texture" id=19]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 13 )
+region = Rect2( 0, 0, 1024, 600 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 13 )
+region = Rect2( 1024, 0, 1024, 600 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 13 )
+region = Rect2( 2048, 0, 1024, 600 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 13 )
+region = Rect2( 3072, 0, 1024, 600 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 3.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 16, 15.8267 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 16, 15.8267 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 1244, 291 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 9 )
+region = Rect2( 1244, 0, 1244, 291 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 9 )
+region = Rect2( 2488, 0, 1244, 291 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 9 )
+region = Rect2( 3732, 0, 1244, 291 )
+
+[sub_resource type="SpriteFrames" id=12]
+animations = [ {
+"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=13]
+extents = Vector2( 47.4697, 10 )
+
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 32, 16 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 96, 100 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 4 )
+region = Rect2( 96, 0, 96, 100 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 4 )
+region = Rect2( 192, 0, 96, 100 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 4 )
+region = Rect2( 288, 0, 96, 100 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 4 )
+region = Rect2( 384, 0, 96, 100 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 4 )
+region = Rect2( 480, 0, 96, 100 )
+
+[sub_resource type="SpriteFrames" id=21]
+animations = [ {
+"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
+"loop": true,
+"name": "default",
+"speed": 14.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=22]
+extents = Vector2( 40, 10 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 19 )
+region = Rect2( 0, 0, 400, 300 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 19 )
+region = Rect2( 400, 0, 400, 300 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 19 )
+region = Rect2( 800, 0, 400, 300 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 19 )
+region = Rect2( 1200, 0, 400, 300 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 19 )
+region = Rect2( 1600, 0, 400, 300 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 19 )
+region = Rect2( 2000, 0, 400, 300 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 19 )
+region = Rect2( 2400, 0, 400, 300 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 19 )
+region = Rect2( 2800, 0, 400, 300 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 19 )
+region = Rect2( 3200, 0, 400, 300 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 19 )
+region = Rect2( 3600, 0, 400, 300 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 19 )
+region = Rect2( 4000, 0, 400, 300 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 19 )
+region = Rect2( 4400, 0, 400, 300 )
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 19 )
+region = Rect2( 4800, 0, 400, 300 )
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 19 )
+region = Rect2( 5200, 0, 400, 300 )
+
+[sub_resource type="AtlasTexture" id=37]
+atlas = ExtResource( 19 )
+region = Rect2( 5600, 0, 400, 300 )
+
+[sub_resource type="SpriteFrames" id=38]
+animations = [ {
+"frames": [ SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 37 ), SubResource( 37 ), SubResource( 37 ), SubResource( 37 ), SubResource( 37 ), SubResource( 37 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="GameScreen" type="Node2D"]
+script = ExtResource( 8 )
+
+[node name="AllGame" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="AllGame"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AllGame/Area2D"]
+polygon = PoolVector2Array( 1928, 272, 1984, 272, 1984, -192, -64, -192, -64, 64, -8, 64, -8, 152, -160, 144, -128, -296, 2072, -248, 2056, 328, 1928, 336 )
+
+[node name="Sprite" type="Sprite" parent="AllGame"]
+self_modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 1266.08, 1140.54 )
+scale = Vector2( 102.957, 79.931 )
+texture = ExtResource( 14 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="AllGame"]
+position = Vector2( 976, 464 )
+scale = Vector2( 3.03021, 2.81893 )
+frames = SubResource( 5 )
+playing = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sprite2" type="Sprite" parent="AllGame"]
+position = Vector2( 949.262, 1654.75 )
+scale = Vector2( 2.75198, 2.75198 )
+texture = ExtResource( 15 )
+
+[node name="Texts" type="Node2D" parent="AllGame"]
+
+[node name="Walls" type="Node2D" parent="AllGame"]
+
+[node name="StationBCG" type="Sprite" parent="AllGame/Walls"]
+position = Vector2( 960, 640 )
+texture = ExtResource( 10 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="AllGame/Walls"]
+position = Vector2( 144, 408 )
+collision_layer = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AllGame/Walls/StaticBody2D"]
+position = Vector2( 0, 1.30249 )
+polygon = PoolVector2Array( -112, -376, -112, -312, -80, -312, -80, -280, -112, -280, -112, -216, -80, -216, -80, -184, -112, -184, -112, -120, -80, -120, -80, -88, -112, -88, -112, 8, 112, 8, 112, -88, 272, -88, 272, 8, 592, 8, 592, 104, 720, 104, 720, 136, 560, 136, 560, 40, 208, 40, 176, 40, -112, 40, -112, 168, -112, 168, -112, 184, -112, 200, -112, 264, -80, 264, -80, 296, -112, 296, -112, 488, -16, 488, -16, 520, -112, 520, -112, 672, -16, 672, -16, 704, -112, 704, -112, 840, 240, 840, 240, 808, 472, 808, 472, 840, 512, 840, 512, 584, 144, 584, 144, 552, 640, 552, 640, 584, 544, 584, 544, 776, 576, 776, 576, 840, 608, 840, 608, 824, 640, 824, 640, 840, 736, 840, 736, 824, 768, 824, 768, 840, 1056, 840, 1056, 696, 768, 696, 768, 664, 1120, 664, 1120, 696, 1088, 696, 1088, 840, 1232, 840, 1232, 680, 1264, 680, 1264, 840, 1744, 840, 1744, 584, 1712, 584, 1712, 424, 1584, 424, 1584, 456, 1232, 456, 1232, 360, 1040, 360, 1040, 328, 1072, 326.698, 1072, 294.698, 1104, 294.698, 1104, 326.698, 1616, 328, 1616, 294.698, 1584, 294.698, 1584, 262.698, 1616, 262.698, 1616, 166.698, 1584, 166.698, 1584, 134.698, 1616, 134.698, 1616, 38.6975, 1584, 38.6975, 1584, 6.69751, 1616, 6.49473, 1616, -89.3025, 1584, -89.3025, 1584, -121.302, 1616, -121.302, 1616, -200, 1776, -200, 1776, 872, -144, 872, -144, -408, 1232, -408, 1232, 198.698, 1328, 198.698, 1328, 230.698, 1232, 230.698, 1232, 264, 1200, 264, 1200, 136, 816, 136, 816, 104, 1200, 104, 1200, -88, 944, -88, 944, -120, 1200, -120, 1200, -280, 1200, -312, 1200, -376 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="AllGame/Walls/StaticBody2D"]
+polygon = PoolVector2Array( 1120, 584, 1120, 552, 1040, 552, 1040, 520, 1008, 520, 1008, 456, 976, 456, 976, 392, 944, 392, 944, 456, 912, 456, 912, 520, 880, 520, 880, 552, 704, 552, 704, 696, 672, 696, 672, 728, 608, 728, 608, 760, 672, 760, 672, 776, 704, 776, 704, 760, 736, 760, 736, 584 )
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="AllGame/Walls/StaticBody2D"]
+polygon = PoolVector2Array( 1632, 552, 1632, 520, 1232, 520, 1232, 584, 1328, 584, 1328, 728, 1360, 728, 1360, 584, 1568, 584, 1568, 552 )
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="AllGame/Walls/StaticBody2D"]
+polygon = PoolVector2Array( -48, 328, -48, 360, 336, 360, 336, 440, 368, 440, 368, 368, 368, 360, 560, 360, 560, 424, 592, 424, 592, 360, 656, 360, 656, 392, 688, 392, 688, 360, 752, 360, 752, 392, 784, 392, 784, 360, 880, 360, 880, 328 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AllGame/Walls/StaticBody2D"]
+position = Vector2( 1135.62, 791.569 )
+shape = SubResource( 6 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="AllGame/Walls/StaticBody2D"]
+position = Vector2( 1200.31, 744.74 )
+shape = SubResource( 6 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="AllGame/Walls/StaticBody2D"]
+position = Vector2( 1536, 216 )
+shape = SubResource( 6 )
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="AllGame/Walls/StaticBody2D"]
+position = Vector2( 1536, 88 )
+shape = SubResource( 6 )
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="AllGame/Walls/StaticBody2D"]
+position = Vector2( 1536, -40 )
+shape = SubResource( 6 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="AllGame/Walls/StaticBody2D"]
+position = Vector2( 1.55359, 216 )
+shape = SubResource( 7 )
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="AllGame/Walls/StaticBody2D"]
+polygon = PoolVector2Array( 880, -312, 880, -216, 1136, -216, 1136, -184, 880, -184, 880, -24, 1104, -24, 1104, 8, 848, 8, 848, -56, 816, -56, 816, -88, 848, -88, 848, -152, 816, -152, 816, -184, 848, -184, 848, -248, 816, -248, 816, -280, 848, -280, 848, -312 )
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="AllGame/Walls/StaticBody2D"]
+polygon = PoolVector2Array( 176, 104, 208, 104, 208, 168, 240, 168, 240, 200, 336, 200, 336, 232, 208, 232, 208, 264, 176, 264, 176, 136, 112, 136, 112, 168, 48, 168, 48, 136, 80, 136, 80, 104 )
+
+[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="AllGame/Walls/StaticBody2D"]
+polygon = PoolVector2Array( 880, 200, 880, 232, 912, 232, 912, 264, 944, 264, 944, 232, 976, 232, 976, 200 )
+
+[node name="Waves" type="AnimatedSprite" parent="AllGame/Walls"]
+self_modulate = Color( 1, 1, 1, 0.27451 )
+position = Vector2( 1285.77, 1122.82 )
+z_index = 1
+frames = SubResource( 12 )
+frame = 1
+playing = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="WaterArea" type="Area2D" parent="AllGame/Walls"]
+position = Vector2( 1321.54, 977.487 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AllGame/Walls/WaterArea"]
+position = Vector2( 6.6217, 0.264893 )
+shape = SubResource( 13 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="AllGame/Walls/WaterArea"]
+position = Vector2( -598.728, 179.801 )
+shape = SubResource( 13 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="AllGame/Walls/WaterArea"]
+position = Vector2( 485.14, -0.875488 )
+shape = SubResource( 13 )
+
+[node name="Parts" type="Node2D" parent="AllGame"]
+
+[node name="Parts" parent="AllGame/Parts" instance=ExtResource( 7 )]
+position = Vector2( 536, 676.468 )
+scale = Vector2( 0.7, 0.7 )
+effect = 2
+
+[node name="Parts2" parent="AllGame/Parts" instance=ExtResource( 7 )]
+position = Vector2( 1710.8, 208 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="Parts3" parent="AllGame/Parts" instance=ExtResource( 7 )]
+position = Vector2( 768, 1064 )
+scale = Vector2( 0.7, 0.7 )
+effect = 1
+
+[node name="Parts4" parent="AllGame/Parts" instance=ExtResource( 7 )]
+position = Vector2( 272, 1168 )
+scale = Vector2( 0.7, 0.7 )
+effect = 4
+
+[node name="Parts5" parent="AllGame/Parts" instance=ExtResource( 7 )]
+position = Vector2( 96, 352 )
+scale = Vector2( 0.7, 0.7 )
+effect = 5
+
+[node name="Parts6" parent="AllGame/Parts" instance=ExtResource( 7 )]
+position = Vector2( 1282.85, 104 )
+scale = Vector2( 0.7, 0.7 )
+effect = 3
+
+[node name="KeysShipDoor" type="Node2D" parent="AllGame"]
+
+[node name="ShipHolder" type="Sprite" parent="AllGame/KeysShipDoor"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 1678, 600 )
+scale = Vector2( 3.75, 0.5 )
+texture = ExtResource( 5 )
+
+[node name="KeyPurple" parent="AllGame/KeysShipDoor" instance=ExtResource( 6 )]
+position = Vector2( 1795.12, 881.462 )
+blue = false
+
+[node name="KeyBlue" parent="AllGame/KeysShipDoor" instance=ExtResource( 6 )]
+position = Vector2( 430.891, 544 )
+
+[node name="Ship" parent="AllGame/KeysShipDoor" instance=ExtResource( 2 )]
+position = Vector2( 1584, 592 )
+
+[node name="DoorBlue" parent="AllGame/KeysShipDoor" instance=ExtResource( 3 )]
+position = Vector2( 1152, 448 )
+
+[node name="DoorPurple" parent="AllGame/KeysShipDoor" instance=ExtResource( 3 )]
+position = Vector2( 526.891, 895.396 )
+blue = false
+
+[node name="DoorOut" type="Sprite" parent="AllGame/KeysShipDoor"]
+position = Vector2( 495.522, 903.816 )
+z_index = 1
+texture = ExtResource( 11 )
+
+[node name="DoorOut2" type="Sprite" parent="AllGame/KeysShipDoor"]
+position = Vector2( 1120.48, 456.392 )
+z_index = 1
+texture = ExtResource( 11 )
+
+[node name="Radioactive" type="Node2D" parent="AllGame"]
+
+[node name="RadioactiveJumpPad" parent="AllGame/Radioactive" instance=ExtResource( 12 )]
+position = Vector2( 832, 722.668 )
+
+[node name="RadioactiveJumpPad6" parent="AllGame/Radioactive" instance=ExtResource( 12 )]
+position = Vector2( 123.258, 1231.79 )
+
+[node name="RadioactiveJumpPad7" parent="AllGame/Radioactive" instance=ExtResource( 12 )]
+position = Vector2( 77.4192, 1066.31 )
+scale = Vector2( 0.6, 1 )
+
+[node name="RadioactiveJumpPad8" parent="AllGame/Radioactive" instance=ExtResource( 12 )]
+position = Vector2( 77.6314, 880.486 )
+scale = Vector2( 0.6, 1 )
+
+[node name="RadioactiveJumpPad2" parent="AllGame/Radioactive" instance=ExtResource( 12 )]
+position = Vector2( 1279.62, 496 )
+
+[node name="RadioactiveJumpPad3" parent="AllGame/Radioactive" instance=ExtResource( 12 )]
+position = Vector2( 1088, 368 )
+
+[node name="RadioactiveJumpPad4" parent="AllGame/Radioactive" instance=ExtResource( 12 )]
+position = Vector2( 1283.2, 272 )
+
+[node name="RadioactiveJumpPad5" parent="AllGame/Radioactive" instance=ExtResource( 12 )]
+position = Vector2( 1088, 176 )
+
+[node name="Blocks" type="Node2D" parent="AllGame"]
+script = ExtResource( 17 )
+
+[node name="RotateKey" type="StaticBody2D" parent="AllGame/Blocks"]
+position = Vector2( 816, 976 )
+
+[node name="Sprite" type="Sprite" parent="AllGame/Blocks/RotateKey"]
+texture = ExtResource( 16 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AllGame/Blocks/RotateKey"]
+shape = SubResource( 14 )
+
+[node name="BlueKey" type="StaticBody2D" parent="AllGame/Blocks"]
+position = Vector2( 64, 752 )
+
+[node name="Sprite" type="Sprite" parent="AllGame/Blocks/BlueKey"]
+texture = ExtResource( 16 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AllGame/Blocks/BlueKey"]
+shape = SubResource( 14 )
+
+[node name="PurpleKey" type="StaticBody2D" parent="AllGame/Blocks"]
+position = Vector2( 1392, 895.933 )
+rotation = 1.5708
+
+[node name="Sprite" type="Sprite" parent="AllGame/Blocks/PurpleKey"]
+texture = ExtResource( 16 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AllGame/Blocks/PurpleKey"]
+shape = SubResource( 14 )
+
+[node name="UpKey" type="StaticBody2D" parent="AllGame/Blocks"]
+position = Vector2( 1008, 64 )
+rotation = 1.5708
+
+[node name="Sprite" type="Sprite" parent="AllGame/Blocks/UpKey"]
+texture = ExtResource( 16 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AllGame/Blocks/UpKey"]
+shape = SubResource( 14 )
+
+[node name="JumpPadKey" type="StaticBody2D" parent="AllGame/Blocks"]
+position = Vector2( 336, 479.409 )
+rotation = 1.5708
+
+[node name="Sprite" type="Sprite" parent="AllGame/Blocks/JumpPadKey"]
+texture = ExtResource( 16 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AllGame/Blocks/JumpPadKey"]
+shape = SubResource( 14 )
+
+[node name="AnimatedSprite2" type="AnimatedSprite" parent="AllGame"]
+position = Vector2( 312, 1048 )
+rotation = 1.5708
+frames = SubResource( 21 )
+frame = 1
+playing = true
+
+[node name="AnimatedSprite3" type="AnimatedSprite" parent="AllGame"]
+position = Vector2( 656, 496 )
+rotation = 1.5708
+frames = SubResource( 21 )
+frame = 1
+playing = true
+
+[node name="Area2D2" type="Area2D" parent="AllGame"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AllGame/Area2D2"]
+position = Vector2( 1144, 272 )
+shape = SubResource( 22 )
+
+[node name="Robot" type="Sprite" parent="AllGame/Area2D2"]
+position = Vector2( 1199.5, 268.878 )
+scale = Vector2( 0.831017, 0.831017 )
+texture = ExtResource( 18 )
+
+[node name="Area2D3" type="Area2D" parent="AllGame"]
+position = Vector2( -648, 906.71 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AllGame/Area2D3"]
+position = Vector2( 1145.13, 268.85 )
+shape = SubResource( 22 )
+
+[node name="AnimatedSprite4" type="AnimatedSprite" parent="AllGame"]
+position = Vector2( 1720, 640 )
+frames = SubResource( 38 )
+
+[node name="Player" parent="AllGame" instance=ExtResource( 1 )]
+position = Vector2( 219.462, 699.568 )
+
+[connection signal="body_entered" from="AllGame/Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="AllGame/Walls/WaterArea" to="." method="_on_WaterArea_body_entered"]
+[connection signal="body_entered" from="AllGame/Area2D2" to="." method="_on_Area2D2_body_entered"]
+[connection signal="body_entered" from="AllGame/Area2D3" to="." method="_on_Area2D3_body_entered"]
+[connection signal="animation_finished" from="AllGame/AnimatedSprite4" to="." method="_on_AnimatedSprite_animation_finished"]

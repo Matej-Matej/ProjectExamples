@@ -1,0 +1,173 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://Scenes/Player/Camera2D.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Levels/Level.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/PuzzleParts/PuzzlePart.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Levels/TileMap.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/PH/circle.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/Mechanics/CrackingPlatform.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/PuzzleParts/PuzzleFragment.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Characters/Rectangle.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Mechanics/MultipleObjective.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Mechanics/MultipleObjectiveArea.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Levels/Level_4.tscn" type="PackedScene" id=13]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+export (Color, RGB) var rectangleColor
+export var haveHeart = false
+
+func _ready():
+	if (haveHeart):
+		$Sprite2.visible = true
+		$HeartAnim.play(\"beat\")
+	else:
+		$Sprite2.visible = false
+	$AnimationPlayer.play(\"idle\")
+	$Sprite.modulate = rectangleColor
+"
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 69.221, 45.4008 )
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends Node2D
+
+export (Color, RGB) var rectangleColor
+export var haveHeart = false
+
+func _ready():
+	if (haveHeart):
+		$Sprite2.visible = true
+		$HeartAnim.play(\"beat\")
+	else:
+		$Sprite2.visible = false
+	$AnimationPlayer.play(\"idle\")
+	$Sprite.modulate = rectangleColor
+"
+
+[sub_resource type="DynamicFontData" id=4]
+font_path = "res://Assets/Font/Magnolia Script.otf"
+
+[sub_resource type="DynamicFont" id=5]
+size = 20
+font_data = SubResource( 4 )
+
+[node name="Level_3" type="Node2D"]
+pause_mode = 2
+script = ExtResource( 2 )
+title = "Age 14: Feeling redundant"
+
+[node name="Camera2D" parent="." instance=ExtResource( 1 )]
+cpuTexture = ExtResource( 6 )
+
+[node name="AllPuzzleParts" type="Node2D" parent="."]
+
+[node name="PuzzlePart" parent="AllPuzzleParts" instance=ExtResource( 3 )]
+topDir = 0
+bottomDir = 0
+leftDir = 2
+rightDir = 2
+
+[node name="TileMap" parent="AllPuzzleParts/PuzzlePart" instance=ExtResource( 4 )]
+tile_data = PoolIntArray( 524288, 0, 0, 524289, 0, 0, 524290, 0, 0, 524291, 0, 0, 524292, 0, 0, 524293, 0, 0, 524294, 0, 0, 524295, 0, 0, 589824, 0, 0, 589825, 0, 0, 589826, 0, 0, 589827, 0, 0, 589828, 0, 0, 589829, 0, 0, 589830, 0, 0, 589831, 0, 0, 655360, 0, 0, 655361, 0, 0, 655362, 0, 0, 655363, 0, 0, 655364, 0, 0, 655365, 0, 0, 655366, 0, 0, 655367, 0, 0, 720896, 0, 0, 720897, 0, 0, 720898, 0, 0, 720899, 0, 0, 720900, 0, 0, 720901, 0, 0, 720902, 0, 0, 720903, 0, 0, 786432, 0, 0, 786433, 0, 0, 786434, 0, 0, 786435, 0, 0, 786436, 0, 0, 786437, 0, 0, 786438, 0, 0, 786439, 0, 0, 851968, 0, 0, 851969, 0, 0, 851970, 0, 0, 851971, 0, 0, 851972, 0, 0, 851973, 0, 0, 851974, 0, 0, 851975, 0, 0, 917504, 0, 0, 917505, 0, 0, 917506, 0, 0, 917507, 0, 0, 917508, 0, 0, 917509, 0, 0, 917510, 0, 0, 917511, 0, 0, 983040, 0, 0, 983041, 0, 0, 983042, 0, 0, 983043, 0, 0, 983044, 0, 0, 983045, 0, 0, 983046, 0, 0, 983047, 0, 0 )
+
+[node name="Rectangle2" parent="AllPuzzleParts/PuzzlePart" instance=ExtResource( 9 )]
+position = Vector2( 78.5809, 206.193 )
+rectangleColor = Color( 0.333333, 0.254902, 0.372549, 1 )
+
+[node name="Rectangle3" parent="AllPuzzleParts/PuzzlePart" instance=ExtResource( 9 )]
+position = Vector2( 162.766, 220.785 )
+scale = Vector2( 0.7, 0.7 )
+rectangleColor = Color( 0.360784, 0.372549, 0.254902, 1 )
+
+[node name="Rectangle4" parent="AllPuzzleParts/PuzzlePart" instance=ExtResource( 9 )]
+position = Vector2( 125.724, 240.989 )
+scale = Vector2( 0.3, 0.3 )
+script = SubResource( 1 )
+rectangleColor = Color( 0.447059, 0.717647, 0.729412, 1 )
+
+[node name="MultipleObjectiveArea2" parent="AllPuzzleParts/PuzzlePart" instance=ExtResource( 11 )]
+position = Vector2( 126.478, 210.407 )
+
+[node name="CollisionShape2D" parent="AllPuzzleParts/PuzzlePart/MultipleObjectiveArea2" index="0"]
+shape = SubResource( 2 )
+
+[node name="PuzzlePart2" parent="AllPuzzleParts" instance=ExtResource( 3 )]
+position = Vector2( 1024, 0 )
+bottomDir = 2
+leftDir = 0
+
+[node name="TileMap" parent="AllPuzzleParts/PuzzlePart2" instance=ExtResource( 4 )]
+tile_data = PoolIntArray( 589826, 0, 0, 589827, 0, 0, 589828, 0, 0, 589829, 0, 0, 589830, 0, 0, 655363, 0, 0, 655364, 0, 0, 655365, 0, 0, 720905, 0, 0, 720906, 0, 0, 720907, 0, 0, 720908, 0, 0, 720909, 0, 0, 720910, 0, 0, 720911, 0, 0, 786441, 0, 0, 786442, 0, 0, 786443, 0, 0, 786444, 0, 0, 786445, 0, 0, 786446, 0, 0, 786447, 0, 0, 851977, 0, 0, 851978, 0, 0, 851979, 0, 0, 851980, 0, 0, 851981, 0, 0, 851982, 0, 0, 851983, 0, 0, 917513, 0, 0, 917514, 0, 0, 917515, 0, 0, 917516, 0, 0, 917517, 0, 0, 917518, 0, 0, 917519, 0, 0, 983049, 0, 0, 983050, 0, 0, 983051, 0, 0, 983052, 0, 0, 983053, 0, 0, 983054, 0, 0, 983055, 0, 0 )
+
+[node name="PuzzleFragment" parent="AllPuzzleParts/PuzzlePart2" instance=ExtResource( 8 )]
+position = Vector2( 149.394, 255.775 )
+textToShow = "I was a reminder of a life they would rather forget."
+
+[node name="MultipleObjective" parent="AllPuzzleParts/PuzzlePart2" instance=ExtResource( 10 )]
+next = ExtResource( 13 )
+
+[node name="Label2" parent="AllPuzzleParts/PuzzlePart2/MultipleObjective" index="0"]
+margin_left = 352.0
+margin_top = 191.0
+margin_right = 477.0
+margin_bottom = 255.0
+
+[node name="FinalArea" parent="AllPuzzleParts/PuzzlePart2/MultipleObjective" index="1"]
+position = Vector2( 405.695, 302.381 )
+
+[node name="MultipleObjectiveArea" parent="AllPuzzleParts/PuzzlePart2" instance=ExtResource( 11 )]
+position = Vector2( 391.835, 303.641 )
+
+[node name="Rectangle" parent="AllPuzzleParts/PuzzlePart2" instance=ExtResource( 9 )]
+position = Vector2( 418.695, 312.555 )
+scale = Vector2( 0.8, 0.8 )
+rectangleColor = Color( 0.901961, 0.784314, 0.431373, 1 )
+haveHeart = true
+
+[node name="Rectangle5" parent="AllPuzzleParts/PuzzlePart2" instance=ExtResource( 9 )]
+position = Vector2( 370.013, 302.501 )
+script = SubResource( 3 )
+rectangleColor = Color( 0.180392, 0.168627, 0.580392, 1 )
+
+[node name="Label7" type="Label" parent="AllPuzzleParts/PuzzlePart2"]
+margin_left = 315.547
+margin_top = 353.136
+margin_right = 476.547
+margin_bottom = 495.136
+custom_fonts/font = SubResource( 5 )
+text = "Switch between your parents and their new families."
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PuzzlePart3" parent="AllPuzzleParts" instance=ExtResource( 3 )]
+position = Vector2( 512, 1024 )
+topDir = 0
+rightDir = 2
+hasPlayer = true
+
+[node name="TileMap" parent="AllPuzzleParts/PuzzlePart3" instance=ExtResource( 4 )]
+tile_data = PoolIntArray( 458765, 0, 0, 458766, 0, 0, 458767, 0, 0, 524301, 0, 0, 524302, 0, 0, 524303, 0, 0, 589837, 0, 0, 589838, 0, 0, 589839, 0, 0, 655373, 0, 0, 655374, 0, 0, 655375, 0, 0, 720909, 0, 0, 720910, 0, 0, 720911, 0, 0, 786443, 0, 0, 786444, 0, 0, 786445, 0, 0, 786446, 0, 0, 786447, 0, 0, 851979, 0, 0, 851980, 0, 0, 851981, 0, 0, 851982, 0, 0, 851983, 0, 0, 917504, 0, 0, 917505, 0, 0, 917506, 0, 0, 917507, 0, 0, 917508, 0, 0, 917509, 0, 0, 917510, 0, 0, 917511, 0, 0, 917512, 0, 0, 917513, 0, 0, 917514, 0, 0, 917515, 0, 0, 917516, 0, 0, 917517, 0, 0, 917518, 0, 0, 917519, 0, 0, 983040, 0, 0, 983041, 0, 0, 983042, 0, 0, 983043, 0, 0, 983044, 0, 0, 983045, 0, 0, 983046, 0, 0, 983047, 0, 0, 983048, 0, 0, 983049, 0, 0, 983050, 0, 0, 983051, 0, 0, 983052, 0, 0, 983053, 0, 0, 983054, 0, 0, 983055, 0, 0 )
+
+[node name="CrackingPlatform" parent="AllPuzzleParts/PuzzlePart3" instance=ExtResource( 7 )]
+position = Vector2( 160, 320 )
+
+[node name="PuzzleFragment" parent="AllPuzzleParts/PuzzlePart3" instance=ExtResource( 8 )]
+position = Vector2( 64.4453, 412.458 )
+textToShow = "But then she started new family."
+
+[node name="Player" parent="." instance=ExtResource( 5 )]
+position = Vector2( 749.32, 1406.75 )
+scale = Vector2( 1, 1.2 )
+
+[connection signal="editMode" from="Player" to="." method="_on_Player_editMode"]
+
+[editable path="AllPuzzleParts/PuzzlePart/MultipleObjectiveArea2"]
+[editable path="AllPuzzleParts/PuzzlePart2/MultipleObjective"]

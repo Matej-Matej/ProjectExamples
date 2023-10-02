@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Characters/character_malePerson_sheet.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Characters/Character.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Walk"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -0.1, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 36, 43 ]
+}
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 54.3026, 87.0098 )
+
+[node name="Character_1" type="KinematicBody2D"]
+scale = Vector2( 0.5, 0.5 )
+collision_mask = 2
+script = ExtResource( 2 )
+speed = 850
+jumpSpeed = -1000
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+vframes = 5
+hframes = 9
+frame = 36
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Walk = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 1.68179, 39.6443 )
+shape = SubResource( 2 )

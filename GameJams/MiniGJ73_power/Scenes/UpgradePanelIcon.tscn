@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/UpgradePanelIcon.gd" type="Script" id=2]
+[ext_resource path="res://Assets/healIcon.png" type="Texture" id=3]
+
+[node name="UpgradePanelIcon" type="Node2D"]
+pause_mode = 2
+script = ExtResource( 2 )
+iconTexture = ExtResource( 1 )
+pricesPerLevel = [ 10, 30 ]
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )

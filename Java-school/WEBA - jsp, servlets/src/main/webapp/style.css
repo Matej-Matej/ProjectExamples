@@ -1,0 +1,234 @@
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css";
+
+:root {
+    --green: #28a745;
+    --darkGreen: #145621;
+    --dark: #212529;
+    --red: #A72828;
+}
+
+body {
+    margin-top: 58px;
+    font-family: sans-serif;
+    height: 100%;
+    /*overflow: hidden;*/
+    background: url("res/background.jpg") no-repeat center;
+    background-size: cover;
+}
+
+.logo {
+}
+
+/* LOG-REG */
+
+.logreg-form {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.logreg-container{
+    border-radius: 15px;
+    width: 370px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: white;
+    background: var(--dark);
+}
+
+.logreg-toggle {
+    width: 100%;
+    height: 50px;
+}
+
+.logreg-toggle label {
+    width: 50%;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.logreg-toggle-input {
+    font-size: 25px;
+}
+
+.textbox {
+    width: 100%;
+    overflow: hidden;
+    font-size: 20px;
+    padding: 8px 0;
+    margin: 8px 0;
+    border-bottom: 1px solid var(--green);
+}
+
+.textbox input{
+    border: none;
+    outline: none;
+    background: none;
+    color: white;
+    font-size: 18px;
+    width: 80%;
+    float: left;
+    margin: 10px;
+}
+
+.logreg-button {
+    width: 100%;
+
+    color: white;
+    padding: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 12px 0;
+}
+
+.logreg-icon{
+    padding-top: 13px;
+    width: 26px;
+    float: left;
+    text-align: center;
+}
+
+.logreg-error-text {
+    border-radius: 10px;
+    background-color: var(--red);
+    padding: 4px 10px 4px 10px;
+    margin-left: 10%;
+    font-size: 60%;
+    text-align: center;
+    color: white;
+}
+
+/* Category*/
+
+.category {
+
+    height: 100%;
+    background: url("res/background.jpg") no-repeat center;
+    background-size: cover;
+}
+
+.category-delete {
+    position: relative;
+    margin-top: 13px;
+    margin-right: 10px;
+
+}
+
+.category-search {
+    margin-left: 10px;
+    margin-top: 13px;
+}
+
+.green-line {
+    width: 100%;
+    border-bottom: 3px solid var(--dark);
+}
+
+.category-item {
+    font-size: 25px;
+}
+
+
+/*
+Add page
+ */
+
+.add-container {
+    border-radius: 15px;
+    width: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: white;
+    background: var(--dark);
+}
+
+
+.vertical-line {
+    border-left: 1px solid var(--green);
+    height: 50px;
+    margin-right: 10px;
+}
+
+.date_icon {
+    padding-top: 19px;
+    width: 26px;
+    float: left;
+    text-align: center;
+}
+
+.author-item {
+    width: 150px;
+    height: 175px;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: bold;
+    color: var(--green);
+    background: linear-gradient(0deg,  white 65%, var(--green) 35%);
+}
+
+.author-item:hover {
+    background: linear-gradient(0deg,  white 65%, var(--darkGreen) 35%);
+}
+
+.author-item-image {
+    width: 100px;
+    height: 100px;
+}
+
+.author-item-name {
+    margin: 0;
+}
+
+.book-year-item input {
+    width: 30%;
+}
+
+.books-browse-category {
+    height: 40px;
+    margin-top: 12px;
+    margin-left: 12px;
+}
+
+.add-title {
+    color:white;
+    font-size: 40px;
+    width: 100%;
+    background-color: var(--green);
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.add-delete-title {
+    color:white;
+    font-size: 40px;
+    width: 100%;
+    background-color: var(--red);
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.add-text {
+    color: white;
+}
+
+.error-title {
+    color:white;
+    font-size: 40px;
+    width: 100%;
+    background-color: var(--red);
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+label.error {
+    color: var(--red);
+    font-size: 15px;
+}
+
+.add-author-icon {
+    width: 26px;
+    text-align: center;
+}

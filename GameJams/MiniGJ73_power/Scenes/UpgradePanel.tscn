@@ -1,0 +1,357 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://Assets/bcgUpgrade.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/UpgradePanel.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/UpgradePanelIcon.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/IconCursor.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/gulka.png" type="Texture" id=5]
+[ext_resource path="res://Assets/srdceIcon.png" type="Texture" id=6]
+[ext_resource path="res://Assets/healIcon.png" type="Texture" id=7]
+[ext_resource path="res://Assets/BULKYPIX.TTF" type="DynamicFontData" id=8]
+[ext_resource path="res://Assets/plusBattery.png" type="Texture" id=9]
+[ext_resource path="res://Assets/batteryMaxValueIcon.png" type="Texture" id=10]
+[ext_resource path="res://Assets/batteryFasterCharging-sheet.png" type="Texture" id=11]
+[ext_resource path="res://Assets/batterySlowerDrain.png" type="Texture" id=12]
+[ext_resource path="res://Assets/speedWhileCarring.png" type="Texture" id=13]
+[ext_resource path="res://Assets/playerFasterIcon.png" type="Texture" id=14]
+[ext_resource path="res://Assets/turretIcon.png" type="Texture" id=15]
+[ext_resource path="res://Assets/fasterBulletIcon.png" type="Texture" id=16]
+[ext_resource path="res://Assets/fasterShootingIcon.png" type="Texture" id=17]
+[ext_resource path="res://Assets/dmgTurretIcon.png" type="Texture" id=18]
+
+[sub_resource type="DynamicFont" id=1]
+size = 25
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 25
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 8 )
+
+[node name="UpgradePanel" type="Node2D"]
+pause_mode = 2
+z_index = 9
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 520, 296 )
+texture = ExtResource( 1 )
+
+[node name="IconCursor" parent="." instance=ExtResource( 4 )]
+position = Vector2( 264, 160 )
+
+[node name="TimerToCloseWindow" type="Timer" parent="."]
+
+[node name="row0" type="Node2D" parent="."]
+position = Vector2( 104, 0 )
+
+[node name="UpgradePanelIcon" parent="row0" instance=ExtResource( 3 )]
+position = Vector2( 160, 160 )
+iconName = "Increase player speed"
+iconTexture = ExtResource( 14 )
+maxLevel = 10
+pricesPerLevel = [ 4, 4, 5, 6, 7, 8, 8, 8, 8, 8 ]
+
+[node name="UpgradePanelIcon2" parent="row0" instance=ExtResource( 3 )]
+position = Vector2( 280, 160 )
+type = 2
+iconName = "Increase turret damage"
+iconTexture = ExtResource( 18 )
+maxLevel = 4
+pricesPerLevel = [ 10, 11, 12, 13, 14 ]
+
+[node name="UpgradePanelIcon13" parent="row0" instance=ExtResource( 3 )]
+position = Vector2( 360, 160 )
+type = 7
+iconName = "Turret shoot faster"
+iconTexture = ExtResource( 17 )
+maxLevel = 10
+pricesPerLevel = [ 0, 7, 8, 9, 10, 11, 12, 13, 14, 15 ]
+
+[node name="UpgradePanelIcon5" parent="row0" instance=ExtResource( 3 )]
+position = Vector2( 480, 160 )
+type = 8
+iconName = "Slower battery discharge"
+iconTexture = ExtResource( 12 )
+maxLevel = 4
+pricesPerLevel = [ 10, 10, 11, 12, 13 ]
+
+[node name="UpgradePanelIcon6" parent="row0" instance=ExtResource( 3 )]
+position = Vector2( 560, 160 )
+type = 9
+iconName = "Faster battery charge rate"
+iconTexture = ExtResource( 11 )
+maxLevel = 4
+pricesPerLevel = [ 8, 8, 9, 10, 11 ]
+
+[node name="UpgradePanelIcon8" parent="row0" instance=ExtResource( 3 )]
+position = Vector2( 680, 160 )
+type = 13
+iconName = "Increase castle HP by 1"
+iconTexture = ExtResource( 6 )
+maxLevel = 5
+pricesPerLevel = [ 10, 10, 10, 10, 10, 10 ]
+
+[node name="row1" type="Node2D" parent="."]
+position = Vector2( 104, 0 )
+
+[node name="UpgradePanelIcon11" parent="row1" instance=ExtResource( 3 )]
+position = Vector2( 160, 248 )
+type = 1
+iconName = "Increase speed while carrying"
+iconTexture = ExtResource( 13 )
+maxLevel = 10
+pricesPerLevel = [ 4, 4, 5, 6, 7, 8, 8, 8, 8, 8 ]
+
+[node name="UpgradePanelIcon12" parent="row1" instance=ExtResource( 3 )]
+position = Vector2( 280, 248 )
+type = 4
+iconName = "Increase bullet speed"
+iconTexture = ExtResource( 16 )
+maxLevel = 10
+pricesPerLevel = [ 4, 4, 5, 6, 7, 8, 9, 10, 11, 12 ]
+
+[node name="UpgradePanelIcon14" parent="row1" instance=ExtResource( 3 )]
+position = Vector2( 360, 248 )
+type = 5
+iconName = "Add 1 additional turret"
+iconTexture = ExtResource( 15 )
+maxLevel = 1
+pricesPerLevel = [ 80, 80 ]
+
+[node name="UpgradePanelIcon16" parent="row1" instance=ExtResource( 3 )]
+position = Vector2( 480, 248 )
+type = 11
+iconName = "Increase battery storage value"
+iconTexture = ExtResource( 10 )
+maxLevel = 4
+pricesPerLevel = [ 15, 15, 15, 15, 15 ]
+
+[node name="UpgradePanelIcon17" parent="row1" instance=ExtResource( 3 )]
+position = Vector2( 560, 248 )
+type = 10
+iconName = "Add 1 additional battery"
+iconTexture = ExtResource( 9 )
+maxLevel = 1
+pricesPerLevel = [ 60, 60 ]
+
+[node name="UpgradePanelIcon18" parent="row1" instance=ExtResource( 3 )]
+position = Vector2( 680, 248 )
+type = 14
+iconName = "Repair castle by 1HP"
+iconTexture = ExtResource( 7 )
+maxLevel = 0
+pricesPerLevel = [ 15, 15 ]
+
+[node name="IconName3" type="Label" parent="."]
+margin_left = 208.0
+margin_top = 80.0
+margin_right = 330.0
+margin_bottom = 105.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.380392, 0.545098, 0.145098, 1 )
+text = "Player"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="IconName4" type="Label" parent="."]
+margin_left = 366.0
+margin_top = 80.0
+margin_right = 488.0
+margin_bottom = 105.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.886275, 0.356863, 0.258824, 1 )
+text = "Turret"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="IconName5" type="Label" parent="."]
+margin_left = 550.0
+margin_top = 80.0
+margin_right = 698.0
+margin_bottom = 105.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.933333, 0.776471, 0.262745, 1 )
+text = "Battery"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="IconName6" type="Label" parent="."]
+margin_left = 726.0
+margin_top = 80.0
+margin_right = 848.0
+margin_bottom = 105.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.886275, 0.356863, 0.258824, 1 )
+text = "Castle"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BuyContainer" type="Control" parent="."]
+margin_left = 160.0
+margin_top = 320.0
+margin_right = 816.0
+margin_bottom = 514.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="IconTexture" type="TextureRect" parent="BuyContainer"]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 160.0
+margin_bottom = 160.0
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="IconName" type="Label" parent="BuyContainer"]
+margin_left = 192.0
+margin_top = 32.0
+margin_right = 552.0
+margin_bottom = 57.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.886275, 0.356863, 0.258824, 1 )
+text = "Nazov"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="IconName2" type="Label" parent="BuyContainer"]
+margin_left = -32.0
+margin_top = 184.0
+margin_right = 680.0
+margin_bottom = 209.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.886275, 0.356863, 0.258824, 1 )
+text = "Space: return to game           E: buy"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UpgradeCost" type="Label" parent="BuyContainer"]
+margin_left = 192.0
+margin_top = 64.0
+margin_right = 472.0
+margin_bottom = 88.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.933333, 0.776471, 0.262745, 1 )
+text = "Cena"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Money" type="Label" parent="BuyContainer"]
+margin_left = 192.0
+margin_top = 96.0
+margin_right = 416.0
+margin_bottom = 120.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.933333, 0.941176, 0.94902, 1 )
+text = "You have:"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CurrentLevel" type="HBoxContainer" parent="BuyContainer"]
+margin_left = 192.0
+margin_top = 120.0
+margin_right = 224.0
+margin_bottom = 152.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="BuyContainer/CurrentLevel"]
+margin_right = 48.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
+texture = ExtResource( 5 )
+expand = true
+
+[node name="TextureRect2" type="TextureRect" parent="BuyContainer/CurrentLevel"]
+margin_left = 52.0
+margin_right = 100.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
+texture = ExtResource( 5 )
+expand = true
+
+[node name="TextureRect3" type="TextureRect" parent="BuyContainer/CurrentLevel"]
+margin_left = 104.0
+margin_right = 152.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
+texture = ExtResource( 5 )
+expand = true
+
+[node name="TextureRect4" type="TextureRect" parent="BuyContainer/CurrentLevel"]
+margin_left = 156.0
+margin_right = 204.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
+texture = ExtResource( 5 )
+expand = true
+
+[node name="TextureRect5" type="TextureRect" parent="BuyContainer/CurrentLevel"]
+margin_left = 208.0
+margin_right = 256.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
+texture = ExtResource( 5 )
+expand = true
+
+[node name="TextureRect6" type="TextureRect" parent="BuyContainer/CurrentLevel"]
+margin_left = 260.0
+margin_right = 308.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
+texture = ExtResource( 5 )
+expand = true
+
+[node name="TextureRect7" type="TextureRect" parent="BuyContainer/CurrentLevel"]
+margin_left = 312.0
+margin_right = 360.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
+texture = ExtResource( 5 )
+expand = true
+
+[node name="TextureRect8" type="TextureRect" parent="BuyContainer/CurrentLevel"]
+margin_left = 364.0
+margin_right = 412.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
+texture = ExtResource( 5 )
+expand = true
+
+[node name="TextureRect9" type="TextureRect" parent="BuyContainer/CurrentLevel"]
+margin_left = 416.0
+margin_right = 464.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
+texture = ExtResource( 5 )
+expand = true
+
+[node name="TextureRect10" type="TextureRect" parent="BuyContainer/CurrentLevel"]
+margin_left = 468.0
+margin_right = 516.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
+texture = ExtResource( 5 )
+expand = true
+[connection signal="timeout" from="TimerToCloseWindow" to="." method="_on_TimerToCloseWindow_timeout"]
